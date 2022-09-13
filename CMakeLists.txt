@@ -14,15 +14,15 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 add_compile_options(-Wall -Wextra -Werror)
 
+
+# Init SDK
 pico_sdk_init()
-set(PICO_USE_STACK_GUARDS 1)
 
 
 # Define binary
 file(
     GLOB SRC_FILES
-    ${PROJECT_SOURCE_DIR}/c/*.c
-    ${PROJECT_SOURCE_DIR}/c/**/*.c)
+    ${PROJECT_SOURCE_DIR}/c/*.c)
 add_executable(${PROJECT_NAME} ${SRC_FILES})
 
 # Enable if you want to include PIO files
@@ -32,11 +32,22 @@ add_executable(${PROJECT_NAME} ${SRC_FILES})
 #    ${PROJECT_SOURCE_DIR}/c/**/*.pio)
 #pico_generate_pio_header(${PROJECT_NAME} ${PIO_FILES})
 
+add_compile_definitions(
+    ${PROJECT_NAME}
+    PICO_USE_STACK_GUARDS=1
+    PICO_QUEUE_MAX_LEVEL=1)
+
 target_link_libraries(
     ${PROJECT_NAME}
     pico_stdlib
-    hardware_pio
     pico_multicore
+    hardware_pio
+    hardware_i2c
+    hardware_interp
+    hardware_pwm
+    hardware_dma
+    hardware_adc
+    hardware_spi
     rust)
 
 
