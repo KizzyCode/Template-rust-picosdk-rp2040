@@ -4,7 +4,7 @@ file(WRITE "${CMAKE_BINARY_DIR}/CACHEDIR.TAG" "Signature: 8a477f597d28d172789f06
 
 
 # Include SDK and rust library
-include(sdk/pico_sdk_init.cmake)
+include(pico-sdk/pico_sdk_init.cmake)
 add_subdirectory(rust)
 
 
