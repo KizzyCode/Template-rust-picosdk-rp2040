@@ -7,10 +7,6 @@ Cargo.lock
 build
 target
 
-# Ignore SDK
-/sdk/*
-!/sdk/.gitkeep
-
 # Ignore some vscode files
 /.vscode/*
 !/.vscode/*.md
