@@ -30,7 +30,7 @@
  * \param element_size Size of each value in the queue
  * \param element_count Maximum number of entries in the queue
  */
-void nostatic_queue_init(queue_t * q, uint element_size, uint element_count) {
+void __nostatic__queue_init(queue_t * q, uint element_size, uint element_count) {
     return queue_init(q, element_size, element_count);
 }
 
@@ -44,7 +44,7 @@ void nostatic_queue_init(queue_t * q, uint element_size, uint element_count) {
  * This does not use the spinlock, so may return incorrect results if the
  * spin lock is not externally locked
  */
-uint nostatic_queue_get_level_unsafe(queue_t * q) {
+uint __nostatic__queue_get_level_unsafe(queue_t * q) {
     return queue_get_level_unsafe(q);
 }
 
@@ -55,7 +55,7 @@ uint nostatic_queue_get_level_unsafe(queue_t * q) {
  * \param q Pointer to a queue_t structure, used as a handle
  * \return Number of entries in the queue
  */
-uint nostatic_queue_get_level(queue_t * q) {
+uint __nostatic__queue_get_level(queue_t * q) {
     return queue_get_level(q);
 }
 
@@ -67,7 +67,7 @@ uint nostatic_queue_get_level(queue_t * q) {
  * \param q Pointer to a queue_t structure, used as a handle
  * \return Maximum level of the queue
  */
-uint nostatic_queue_get_max_level(queue_t * q) {
+uint __nostatic__queue_get_max_level(queue_t * q) {
     return queue_get_max_level(q);
 }
 
@@ -77,7 +77,7 @@ uint nostatic_queue_get_max_level(queue_t * q) {
  *
  * \param q Pointer to a queue_t structure, used as a handle
  */
-void nostatic_queue_reset_max_level(queue_t * q) {
+void __nostatic__queue_reset_max_level(queue_t * q) {
     return queue_reset_max_level(q);
 }
 
@@ -90,7 +90,7 @@ void nostatic_queue_reset_max_level(queue_t * q) {
  *
  * This function is interrupt and multicore safe.
  */
-bool nostatic_queue_is_empty(queue_t * q) {
+bool __nostatic__queue_is_empty(queue_t * q) {
     return queue_is_empty(q);
 }
 
@@ -103,7 +103,7 @@ bool nostatic_queue_is_empty(queue_t * q) {
  *
  * This function is interrupt and multicore safe.
  */
-bool nostatic_queue_is_full(queue_t * q) {
+bool __nostatic__queue_is_full(queue_t * q) {
     return queue_is_full(q);
 }
 
@@ -119,7 +119,7 @@ bool nostatic_queue_is_full(queue_t * q) {
  * \param required if true then this function will assert if the frequency is not attainable.
  * \return true if the clock was configured
  */
-bool nostatic_set_sys_clock_khz(uint32_t freq_khz, bool required) {
+bool __nostatic__set_sys_clock_khz(uint32_t freq_khz, bool required) {
     return set_sys_clock_khz(freq_khz, required);
 }
 
@@ -135,7 +135,7 @@ bool nostatic_set_sys_clock_khz(uint32_t freq_khz, bool required) {
  * \sa sleep_until()
  * \sa time_us_64()
  */
-absolute_time_t nostatic_get_absolute_time() {
+absolute_time_t __nostatic__get_absolute_time() {
     return get_absolute_time();
 }
 
@@ -147,7 +147,7 @@ absolute_time_t nostatic_get_absolute_time() {
  * \return the number of milliseconds since boot represented by t
  * \sa to_us_since_boot()
  */
-uint32_t nostatic_to_ms_since_boot(absolute_time_t t) {
+uint32_t __nostatic__to_ms_since_boot(absolute_time_t t) {
     return to_ms_since_boot(t);
 }
 
@@ -159,7 +159,7 @@ uint32_t nostatic_to_ms_since_boot(absolute_time_t t) {
  * \param us the number of microseconds to add
  * \return the timestamp representing the resulting time
  */
-absolute_time_t nostatic_delayed_by_us(const absolute_time_t t, uint64_t us) {
+absolute_time_t __nostatic__delayed_by_us(const absolute_time_t t, uint64_t us) {
     return delayed_by_us(t, us);
 }
 
@@ -171,7 +171,7 @@ absolute_time_t nostatic_delayed_by_us(const absolute_time_t t, uint64_t us) {
  * \param ms the number of milliseconds to add
  * \return the timestamp representing the resulting time
  */
-absolute_time_t nostatic_delayed_by_ms(const absolute_time_t t, uint32_t ms) {
+absolute_time_t __nostatic__delayed_by_ms(const absolute_time_t t, uint32_t ms) {
     return delayed_by_ms(t, ms);
 }
 
@@ -182,7 +182,7 @@ absolute_time_t nostatic_delayed_by_ms(const absolute_time_t t, uint32_t ms) {
  * \param us the number of microseconds to add to the current timestamp
  * \return the future timestamp
  */
-absolute_time_t nostatic_make_timeout_time_us(uint64_t us) {
+absolute_time_t __nostatic__make_timeout_time_us(uint64_t us) {
     return make_timeout_time_us(us);
 }
 
@@ -193,7 +193,7 @@ absolute_time_t nostatic_make_timeout_time_us(uint64_t us) {
  * \param ms the number of milliseconds to add to the current timestamp
  * \return the future timestamp
  */
-absolute_time_t nostatic_make_timeout_time_ms(uint32_t ms) {
+absolute_time_t __nostatic__make_timeout_time_ms(uint32_t ms) {
     return make_timeout_time_ms(ms);
 }
 
@@ -209,7 +209,7 @@ absolute_time_t nostatic_make_timeout_time_ms(uint32_t ms) {
  * \return the number of microseconds between the two timestamps (positive if `to` is after `from` except
  * in case of overflow)
  */
-int64_t nostatic_absolute_time_diff_us(absolute_time_t from, absolute_time_t to) {
+int64_t __nostatic__absolute_time_diff_us(absolute_time_t from, absolute_time_t to) {
     return absolute_time_diff_us(from, to);
 }
 
@@ -220,7 +220,7 @@ int64_t nostatic_absolute_time_diff_us(absolute_time_t from, absolute_time_t to)
  *  \return true if the timestamp is at_the_end_of_time
  *  \sa at_the_end_of_time
  */
-bool nostatic_is_at_the_end_of_time(absolute_time_t t) {
+bool __nostatic__is_at_the_end_of_time(absolute_time_t t) {
     return is_at_the_end_of_time(t);
 }
 
@@ -231,7 +231,7 @@ bool nostatic_is_at_the_end_of_time(absolute_time_t t) {
  *  \return true if the timestamp is nil
  *  \sa nil_time
  */
-bool nostatic_is_nil_time(absolute_time_t t) {
+bool __nostatic__is_nil_time(absolute_time_t t) {
     return is_nil_time(t);
 }
 
@@ -259,7 +259,7 @@ bool nostatic_is_nil_time(absolute_time_t t) {
  *           or if the callback <i>was</i> called during this method but the callback cancelled itself by returning 0
  * @return -1 if there were no alarm slots available
  */
-alarm_id_t nostatic_alarm_pool_add_alarm_in_us(alarm_pool_t * pool, uint64_t us, alarm_callback_t callback, void * user_data, bool fire_if_past) {
+alarm_id_t __nostatic__alarm_pool_add_alarm_in_us(alarm_pool_t * pool, uint64_t us, alarm_callback_t callback, void * user_data, bool fire_if_past) {
     return alarm_pool_add_alarm_in_us(pool, us, callback, user_data, fire_if_past);
 }
 
@@ -287,7 +287,7 @@ alarm_id_t nostatic_alarm_pool_add_alarm_in_us(alarm_pool_t * pool, uint64_t us,
  *           or if the callback <i>was</i> called during this method but the callback cancelled itself by returning 0
  * @return -1 if there were no alarm slots available
  */
-alarm_id_t nostatic_alarm_pool_add_alarm_in_ms(alarm_pool_t * pool, uint32_t ms, alarm_callback_t callback, void * user_data, bool fire_if_past) {
+alarm_id_t __nostatic__alarm_pool_add_alarm_in_ms(alarm_pool_t * pool, uint32_t ms, alarm_callback_t callback, void * user_data, bool fire_if_past) {
     return alarm_pool_add_alarm_in_ms(pool, ms, callback, user_data, fire_if_past);
 }
 
@@ -314,7 +314,7 @@ alarm_id_t nostatic_alarm_pool_add_alarm_in_ms(alarm_pool_t * pool, uint32_t ms,
  *           or if the callback <i>was</i> called during this method but the callback cancelled itself by returning 0
  * @return -1 if there were no alarm slots available
  */
-alarm_id_t nostatic_add_alarm_at(absolute_time_t time, alarm_callback_t callback, void * user_data, bool fire_if_past) {
+alarm_id_t __nostatic__add_alarm_at(absolute_time_t time, alarm_callback_t callback, void * user_data, bool fire_if_past) {
     return add_alarm_at(time, callback, user_data, fire_if_past);
 }
 
@@ -341,7 +341,7 @@ alarm_id_t nostatic_add_alarm_at(absolute_time_t time, alarm_callback_t callback
  *           or if the callback <i>was</i> called during this method but the callback cancelled itself by returning 0
  * @return -1 if there were no alarm slots available
  */
-alarm_id_t nostatic_add_alarm_in_us(uint64_t us, alarm_callback_t callback, void * user_data, bool fire_if_past) {
+alarm_id_t __nostatic__add_alarm_in_us(uint64_t us, alarm_callback_t callback, void * user_data, bool fire_if_past) {
     return add_alarm_in_us(us, callback, user_data, fire_if_past);
 }
 
@@ -368,7 +368,7 @@ alarm_id_t nostatic_add_alarm_in_us(uint64_t us, alarm_callback_t callback, void
  *           or if the callback <i>was</i> called during this method but the callback cancelled itself by returning 0
  * @return -1 if there were no alarm slots available
  */
-alarm_id_t nostatic_add_alarm_in_ms(uint32_t ms, alarm_callback_t callback, void * user_data, bool fire_if_past) {
+alarm_id_t __nostatic__add_alarm_in_ms(uint32_t ms, alarm_callback_t callback, void * user_data, bool fire_if_past) {
     return add_alarm_in_ms(ms, callback, user_data, fire_if_past);
 }
 
@@ -380,7 +380,7 @@ alarm_id_t nostatic_add_alarm_in_ms(uint32_t ms, alarm_callback_t callback, void
  * \return true if the alarm was cancelled, false if it didn't exist
  * \sa alarm_id_t for a note on reuse of IDs
  */
-bool nostatic_cancel_alarm(alarm_id_t alarm_id) {
+bool __nostatic__cancel_alarm(alarm_id_t alarm_id) {
     return cancel_alarm(alarm_id);
 }
 
@@ -403,7 +403,7 @@ bool nostatic_cancel_alarm(alarm_id_t alarm_id) {
  * @param out the pointer to the user owned structure to store the repeating timer info in. BEWARE this storage location must outlive the repeating timer, so be careful of using stack space
  * @return false if there were no alarm slots available to create the timer, true otherwise.
  */
-bool nostatic_alarm_pool_add_repeating_timer_ms(alarm_pool_t * pool, int32_t delay_ms, repeating_timer_callback_t callback, void * user_data, repeating_timer_t * out) {
+bool __nostatic__alarm_pool_add_repeating_timer_ms(alarm_pool_t * pool, int32_t delay_ms, repeating_timer_callback_t callback, void * user_data, repeating_timer_t * out) {
     return alarm_pool_add_repeating_timer_ms(pool, delay_ms, callback, user_data, out);
 }
 
@@ -425,7 +425,7 @@ bool nostatic_alarm_pool_add_repeating_timer_ms(alarm_pool_t * pool, int32_t del
  * @param out the pointer to the user owned structure to store the repeating timer info in. BEWARE this storage location must outlive the repeating timer, so be careful of using stack space
  * @return false if there were no alarm slots available to create the timer, true otherwise.
  */
-bool nostatic_add_repeating_timer_us(int64_t delay_us, repeating_timer_callback_t callback, void * user_data, repeating_timer_t * out) {
+bool __nostatic__add_repeating_timer_us(int64_t delay_us, repeating_timer_callback_t callback, void * user_data, repeating_timer_t * out) {
     return add_repeating_timer_us(delay_us, callback, user_data, out);
 }
 
@@ -447,7 +447,7 @@ bool nostatic_add_repeating_timer_us(int64_t delay_us, repeating_timer_callback_
  * @param out the pointer to the user owned structure to store the repeating timer info in. BEWARE this storage location must outlive the repeating timer, so be careful of using stack space
  * @return false if there were no alarm slots available to create the timer, true otherwise.
  */
-bool nostatic_add_repeating_timer_ms(int32_t delay_ms, repeating_timer_callback_t callback, void * user_data, repeating_timer_t * out) {
+bool __nostatic__add_repeating_timer_ms(int32_t delay_ms, repeating_timer_callback_t callback, void * user_data, repeating_timer_t * out) {
     return add_repeating_timer_ms(delay_ms, callback, user_data, out);
 }
 
@@ -460,7 +460,7 @@ bool nostatic_add_repeating_timer_ms(int32_t delay_ms, repeating_timer_callback_
  *
  * \param crit_sec Pointer to critical_section structure
  */
-void nostatic_critical_section_enter_blocking(critical_section_t * crit_sec) {
+void __nostatic__critical_section_enter_blocking(critical_section_t * crit_sec) {
     return critical_section_enter_blocking(crit_sec);
 }
 
@@ -470,7 +470,7 @@ void nostatic_critical_section_enter_blocking(critical_section_t * crit_sec) {
  *
  * \param crit_sec Pointer to critical_section structure
  */
-void nostatic_critical_section_exit(critical_section_t * crit_sec) {
+void __nostatic__critical_section_exit(critical_section_t * crit_sec) {
     return critical_section_exit(crit_sec);
 }
 
@@ -481,7 +481,7 @@ void nostatic_critical_section_exit(critical_section_t * crit_sec) {
  * \param mtx Pointer to mutex structure
  * \return true if the mutex is initialized, false otherwise
  */
-bool nostatic_mutex_is_initialized(mutex_t * mtx) {
+bool __nostatic__mutex_is_initialized(mutex_t * mtx) {
     return mutex_is_initialized(mtx);
 }
 
@@ -492,7 +492,7 @@ bool nostatic_mutex_is_initialized(mutex_t * mtx) {
  * \param mtx Pointer to recursive mutex structure
  * \return true if the recursive mutex is initialized, false otherwise
  */
-bool nostatic_recursive_mutex_is_initialized(recursive_mutex_t * mtx) {
+bool __nostatic__recursive_mutex_is_initialized(recursive_mutex_t * mtx) {
     return recursive_mutex_is_initialized(mtx);
 }
 
@@ -503,7 +503,7 @@ bool nostatic_recursive_mutex_is_initialized(recursive_mutex_t * mtx) {
  * \return a number of microseconds since boot, equivalent to t
  * \ingroup timestamp
  */
-uint64_t nostatic_to_us_since_boot(absolute_time_t t) {
+uint64_t __nostatic__to_us_since_boot(absolute_time_t t) {
     return to_us_since_boot(t);
 }
 
@@ -515,7 +515,7 @@ uint64_t nostatic_to_us_since_boot(absolute_time_t t) {
  *                      as a signed 64 bit integer
  * \ingroup timestamp
  */
-void nostatic_update_us_since_boot(absolute_time_t * t, uint64_t us_since_boot) {
+void __nostatic__update_us_since_boot(absolute_time_t * t, uint64_t us_since_boot) {
     return update_us_since_boot(t, us_since_boot);
 }
 
@@ -527,7 +527,7 @@ void nostatic_update_us_since_boot(absolute_time_t * t, uint64_t us_since_boot) 
  *
  * \return true if the FIFO has data in it, false otherwise
  */
-bool nostatic_multicore_fifo_rvalid() {
+bool __nostatic__multicore_fifo_rvalid() {
     return multicore_fifo_rvalid();
 }
 
@@ -539,7 +539,7 @@ bool nostatic_multicore_fifo_rvalid() {
  *
  *  @return true if the FIFO has room for more data, false otherwise
  */
-bool nostatic_multicore_fifo_wready() {
+bool __nostatic__multicore_fifo_wready() {
     return multicore_fifo_wready();
 }
 
@@ -549,7 +549,7 @@ bool nostatic_multicore_fifo_wready() {
  *
  * See the note in the \ref multicore_fifo section for considerations regarding use of the inter-core FIFOs
  */
-void nostatic_multicore_fifo_drain() {
+void __nostatic__multicore_fifo_drain() {
     return multicore_fifo_drain();
 }
 
@@ -560,7 +560,7 @@ void nostatic_multicore_fifo_drain() {
  * \param i2c I2C instance
  * \return Number of I2C, 0 or 1.
  */
-uint nostatic_i2c_hw_index(i2c_inst_t * i2c) {
+uint __nostatic__i2c_hw_index(i2c_inst_t * i2c) {
     return i2c_hw_index(i2c);
 }
 
@@ -580,7 +580,7 @@ uint nostatic_i2c_hw_index(i2c_inst_t * i2c) {
  *
  * \return Number of bytes written, or PICO_ERROR_GENERIC if address not acknowledged, no device present, or PICO_ERROR_TIMEOUT if a timeout occurred.
  */
-int nostatic_i2c_write_timeout_us(i2c_inst_t * i2c, uint8_t addr, const uint8_t * src, size_t len, bool nostop, uint timeout_us) {
+int __nostatic__i2c_write_timeout_us(i2c_inst_t * i2c, uint8_t addr, const uint8_t * src, size_t len, bool nostop, uint timeout_us) {
     return i2c_write_timeout_us(i2c, addr, src, len, nostop, timeout_us);
 }
 
@@ -597,7 +597,7 @@ int nostatic_i2c_write_timeout_us(i2c_inst_t * i2c, uint8_t addr, const uint8_t 
  * \param timeout_us The time that the function will wait for the entire transaction to complete
  * \return Number of bytes read, or PICO_ERROR_GENERIC if address not acknowledged, no device present, or PICO_ERROR_TIMEOUT if a timeout occurred.
  */
-int nostatic_i2c_read_timeout_us(i2c_inst_t * i2c, uint8_t addr, uint8_t * dst, size_t len, bool nostop, uint timeout_us) {
+int __nostatic__i2c_read_timeout_us(i2c_inst_t * i2c, uint8_t addr, uint8_t * dst, size_t len, bool nostop, uint timeout_us) {
     return i2c_read_timeout_us(i2c, addr, dst, len, nostop, timeout_us);
 }
 
@@ -609,7 +609,7 @@ int nostatic_i2c_read_timeout_us(i2c_inst_t * i2c, uint8_t addr, uint8_t * dst, 
  * \return 0 if no space is available in the I2C to write more data. If return is nonzero, at
  * least that many bytes can be written without blocking.
  */
-size_t nostatic_i2c_get_write_available(i2c_inst_t * i2c) {
+size_t __nostatic__i2c_get_write_available(i2c_inst_t * i2c) {
     return i2c_get_write_available(i2c);
 }
 
@@ -621,7 +621,7 @@ size_t nostatic_i2c_get_write_available(i2c_inst_t * i2c) {
  * \return 0 if no data available, if return is nonzero at
  * least that many bytes can be read without blocking.
  */
-size_t nostatic_i2c_get_read_available(i2c_inst_t * i2c) {
+size_t __nostatic__i2c_get_read_available(i2c_inst_t * i2c) {
     return i2c_get_read_available(i2c);
 }
 
@@ -636,7 +636,7 @@ size_t nostatic_i2c_get_read_available(i2c_inst_t * i2c) {
  * Writes directly to the I2C TX FIFO which is mainly useful for
  * slave-mode operation.
  */
-void nostatic_i2c_write_raw_blocking(i2c_inst_t * i2c, const uint8_t * src, size_t len) {
+void __nostatic__i2c_write_raw_blocking(i2c_inst_t * i2c, const uint8_t * src, size_t len) {
     return i2c_write_raw_blocking(i2c, src, len);
 }
 
@@ -651,7 +651,7 @@ void nostatic_i2c_write_raw_blocking(i2c_inst_t * i2c, const uint8_t * src, size
  * Reads directly from the I2C RX FIFO which is mainly useful for
  * slave-mode operation.
  */
-void nostatic_i2c_read_raw_blocking(i2c_inst_t * i2c, uint8_t * dst, size_t len) {
+void __nostatic__i2c_read_raw_blocking(i2c_inst_t * i2c, uint8_t * dst, size_t len) {
     return i2c_read_raw_blocking(i2c, dst, len);
 }
 
@@ -662,7 +662,7 @@ void nostatic_i2c_read_raw_blocking(i2c_inst_t * i2c, uint8_t * dst, size_t len)
  * \param i2c Either \ref i2c0 or \ref i2c1
  * \param is_tx true for sending data to the I2C instance, false for receiving data from the I2C instance
  */
-uint nostatic_i2c_get_dreq(i2c_inst_t * i2c, bool is_tx) {
+uint __nostatic__i2c_get_dreq(i2c_inst_t * i2c, bool is_tx) {
     return i2c_get_dreq(i2c, is_tx);
 }
 
@@ -676,7 +676,7 @@ uint nostatic_i2c_get_dreq(i2c_inst_t * i2c, bool is_tx) {
  *
  * \param int_num Interrupt number \ref interrupt_nums
  */
-void nostatic_irq_clear(uint int_num) {
+void __nostatic__irq_clear(uint int_num) {
     return irq_clear(int_num);
 }
 
@@ -686,7 +686,7 @@ void nostatic_irq_clear(uint int_num) {
  *
  * \param gpio GPIO number
  */
-void nostatic_gpio_pull_up(uint gpio) {
+void __nostatic__gpio_pull_up(uint gpio) {
     return gpio_pull_up(gpio);
 }
 
@@ -697,7 +697,7 @@ void nostatic_gpio_pull_up(uint gpio) {
  * \param gpio GPIO number
  * \return true if the GPIO is pulled up
  */
-bool nostatic_gpio_is_pulled_up(uint gpio) {
+bool __nostatic__gpio_is_pulled_up(uint gpio) {
     return gpio_is_pulled_up(gpio);
 }
 
@@ -707,7 +707,7 @@ bool nostatic_gpio_is_pulled_up(uint gpio) {
  *
  * \param gpio GPIO number
  */
-void nostatic_gpio_pull_down(uint gpio) {
+void __nostatic__gpio_pull_down(uint gpio) {
     return gpio_pull_down(gpio);
 }
 
@@ -718,7 +718,7 @@ void nostatic_gpio_pull_down(uint gpio) {
  * \param gpio GPIO number
  * \return true if the GPIO is pulled down
  */
-bool nostatic_gpio_is_pulled_down(uint gpio) {
+bool __nostatic__gpio_is_pulled_down(uint gpio) {
     return gpio_is_pulled_down(gpio);
 }
 
@@ -728,7 +728,7 @@ bool nostatic_gpio_is_pulled_down(uint gpio) {
  *
  * \param gpio GPIO number
  */
-void nostatic_gpio_disable_pulls(uint gpio) {
+void __nostatic__gpio_disable_pulls(uint gpio) {
     return gpio_disable_pulls(gpio);
 }
 
@@ -740,7 +740,7 @@ void nostatic_gpio_disable_pulls(uint gpio) {
  * \return Bitmask of events that are currently pending for the GPIO. See \ref gpio_irq_level for details.
  * \sa gpio_acknowledge_irq
  */
-uint32_t nostatic_gpio_get_irq_event_mask(uint gpio) {
+uint32_t __nostatic__gpio_get_irq_event_mask(uint gpio) {
     return gpio_get_irq_event_mask(gpio);
 }
 
@@ -772,7 +772,7 @@ uint32_t nostatic_gpio_get_irq_event_mask(uint gpio) {
  * @param handler the handler to add to the list of GPIO IRQ handlers for this core
  * @param order_priority the priority order to determine the relative position of the handler in the list of GPIO IRQ handlers for this core.
  */
-void nostatic_gpio_add_raw_irq_handler_with_order_priority(uint gpio, irq_handler_t handler, uint8_t order_priority) {
+void __nostatic__gpio_add_raw_irq_handler_with_order_priority(uint gpio, irq_handler_t handler, uint8_t order_priority) {
     return gpio_add_raw_irq_handler_with_order_priority(gpio, handler, order_priority);
 }
 
@@ -801,7 +801,7 @@ void nostatic_gpio_add_raw_irq_handler_with_order_priority(uint gpio, irq_handle
  * @param gpio the GPIO number that will no longer be passed to the default callback for this core
  * @param handler the handler to add to the list of GPIO IRQ handlers for this core
  */
-void nostatic_gpio_add_raw_irq_handler(uint gpio, irq_handler_t handler) {
+void __nostatic__gpio_add_raw_irq_handler(uint gpio, irq_handler_t handler) {
     return gpio_add_raw_irq_handler(gpio, handler);
 }
 
@@ -817,7 +817,7 @@ void nostatic_gpio_add_raw_irq_handler(uint gpio, irq_handler_t handler) {
  * @param gpio the GPIO number that will now be passed to the default callback for this core
  * @param handler the handler to remove from the list of GPIO IRQ handlers for this core
  */
-void nostatic_gpio_remove_raw_irq_handler(uint gpio, irq_handler_t handler) {
+void __nostatic__gpio_remove_raw_irq_handler(uint gpio, irq_handler_t handler) {
     return gpio_remove_raw_irq_handler(gpio, handler);
 }
 
@@ -828,7 +828,7 @@ void nostatic_gpio_remove_raw_irq_handler(uint gpio, irq_handler_t handler) {
  * \param gpio GPIO number
  * \return Current state of the GPIO. 0 for low, non-zero for high
  */
-bool nostatic_gpio_get(uint gpio) {
+bool __nostatic__gpio_get(uint gpio) {
     return gpio_get(gpio);
 }
 
@@ -838,7 +838,7 @@ bool nostatic_gpio_get(uint gpio) {
  *
  * \return Bitmask of raw GPIO values, as bits 0-29
  */
-uint32_t nostatic_gpio_get_all() {
+uint32_t __nostatic__gpio_get_all() {
     return gpio_get_all();
 }
 
@@ -848,7 +848,7 @@ uint32_t nostatic_gpio_get_all() {
  *
  * \param mask Bitmask of GPIO values to set, as bits 0-29
  */
-void nostatic_gpio_set_mask(uint32_t mask) {
+void __nostatic__gpio_set_mask(uint32_t mask) {
     return gpio_set_mask(mask);
 }
 
@@ -858,7 +858,7 @@ void nostatic_gpio_set_mask(uint32_t mask) {
  *
  * \param mask Bitmask of GPIO values to clear, as bits 0-29
  */
-void nostatic_gpio_clr_mask(uint32_t mask) {
+void __nostatic__gpio_clr_mask(uint32_t mask) {
     return gpio_clr_mask(mask);
 }
 
@@ -868,7 +868,7 @@ void nostatic_gpio_clr_mask(uint32_t mask) {
  *
  * \param mask Bitmask of GPIO values to toggle, as bits 0-29
  */
-void nostatic_gpio_xor_mask(uint32_t mask) {
+void __nostatic__gpio_xor_mask(uint32_t mask) {
     return gpio_xor_mask(mask);
 }
 
@@ -884,7 +884,7 @@ void nostatic_gpio_xor_mask(uint32_t mask) {
  * Since this uses the TOGL alias, it is concurrency-safe with e.g. an IRQ
  * bashing different pins from the same core.
  */
-void nostatic_gpio_put_masked(uint32_t mask, uint32_t value) {
+void __nostatic__gpio_put_masked(uint32_t mask, uint32_t value) {
     return gpio_put_masked(mask, value);
 }
 
@@ -894,7 +894,7 @@ void nostatic_gpio_put_masked(uint32_t mask, uint32_t value) {
  *
  * \param value Bitmask of GPIO values to change, as bits 0-29
  */
-void nostatic_gpio_put_all(uint32_t value) {
+void __nostatic__gpio_put_all(uint32_t value) {
     return gpio_put_all(value);
 }
 
@@ -905,7 +905,7 @@ void nostatic_gpio_put_all(uint32_t value) {
  * \param gpio GPIO number
  * \param value If false clear the GPIO, otherwise set it.
  */
-void nostatic_gpio_put(uint gpio, bool value) {
+void __nostatic__gpio_put(uint gpio, bool value) {
     return gpio_put(gpio, value);
 }
 
@@ -926,7 +926,7 @@ void nostatic_gpio_put(uint gpio, bool value) {
  * \param gpio GPIO number
  * \return true if the GPIO output level is high, false if low.
  */
-bool nostatic_gpio_get_out_level(uint gpio) {
+bool __nostatic__gpio_get_out_level(uint gpio) {
     return gpio_get_out_level(gpio);
 }
 
@@ -938,7 +938,7 @@ bool nostatic_gpio_get_out_level(uint gpio) {
  *
  * \param mask Bitmask of GPIO to set to output, as bits 0-29
  */
-void nostatic_gpio_set_dir_out_masked(uint32_t mask) {
+void __nostatic__gpio_set_dir_out_masked(uint32_t mask) {
     return gpio_set_dir_out_masked(mask);
 }
 
@@ -948,7 +948,7 @@ void nostatic_gpio_set_dir_out_masked(uint32_t mask) {
  *
  * \param mask Bitmask of GPIO to set to input, as bits 0-29
  */
-void nostatic_gpio_set_dir_in_masked(uint32_t mask) {
+void __nostatic__gpio_set_dir_in_masked(uint32_t mask) {
     return gpio_set_dir_in_masked(mask);
 }
 
@@ -964,7 +964,7 @@ void nostatic_gpio_set_dir_in_masked(uint32_t mask) {
  * E.g. gpio_set_dir_masked(0x3, 0x2); -> set pin 0 to input, pin 1 to output,
  * simultaneously.
  */
-void nostatic_gpio_set_dir_masked(uint32_t mask, uint32_t value) {
+void __nostatic__gpio_set_dir_masked(uint32_t mask, uint32_t value) {
     return gpio_set_dir_masked(mask, value);
 }
 
@@ -974,7 +974,7 @@ void nostatic_gpio_set_dir_masked(uint32_t mask, uint32_t value) {
  *
  * \param values individual settings for each gpio; for GPIO N, bit N is 1 for out, 0 for in
  */
-void nostatic_gpio_set_dir_all_bits(uint32_t values) {
+void __nostatic__gpio_set_dir_all_bits(uint32_t values) {
     return gpio_set_dir_all_bits(values);
 }
 
@@ -985,7 +985,7 @@ void nostatic_gpio_set_dir_all_bits(uint32_t values) {
  * \param gpio GPIO number
  * \param out true for out, false for in
  */
-void nostatic_gpio_set_dir(uint gpio, bool out) {
+void __nostatic__gpio_set_dir(uint gpio, bool out) {
     return gpio_set_dir(gpio, out);
 }
 
@@ -996,7 +996,7 @@ void nostatic_gpio_set_dir(uint gpio, bool out) {
  * \param gpio GPIO number
  * \return true if the direction for the pin is OUT
  */
-bool nostatic_gpio_is_dir_out(uint gpio) {
+bool __nostatic__gpio_is_dir_out(uint gpio) {
     return gpio_is_dir_out(gpio);
 }
 
@@ -1007,7 +1007,7 @@ bool nostatic_gpio_is_dir_out(uint gpio) {
  * \param gpio GPIO number
  * \return 1 for out, 0 for in
  */
-uint nostatic_gpio_get_dir(uint gpio) {
+uint __nostatic__gpio_get_dir(uint gpio) {
     return gpio_get_dir(gpio);
 }
 
@@ -1020,7 +1020,7 @@ uint nostatic_gpio_get_dir(uint gpio) {
  * \param c Pointer to an interpolator config
  * \param shift Number of bits
  */
-void nostatic_interp_config_set_shift(interp_config * c, uint shift) {
+void __nostatic__interp_config_set_shift(interp_config * c, uint shift) {
     return interp_config_set_shift(c, shift);
 }
 
@@ -1034,7 +1034,7 @@ void nostatic_interp_config_set_shift(interp_config * c, uint shift) {
  * \param mask_lsb The least significant bit allowed to pass
  * \param mask_msb The most significant bit allowed to pass
  */
-void nostatic_interp_config_set_mask(interp_config * c, uint mask_lsb, uint mask_msb) {
+void __nostatic__interp_config_set_mask(interp_config * c, uint mask_lsb, uint mask_msb) {
     return interp_config_set_mask(c, mask_lsb, mask_msb);
 }
 
@@ -1049,7 +1049,7 @@ void nostatic_interp_config_set_mask(interp_config * c, uint mask_lsb, uint mask
  * \param c Pointer to interpolation config
  * \param cross_input If true, enable the cross input.
  */
-void nostatic_interp_config_set_cross_input(interp_config * c, bool cross_input) {
+void __nostatic__interp_config_set_cross_input(interp_config * c, bool cross_input) {
     return interp_config_set_cross_input(c, cross_input);
 }
 
@@ -1062,7 +1062,7 @@ void nostatic_interp_config_set_cross_input(interp_config * c, bool cross_input)
  * \param c Pointer to interpolation config
  * \param cross_result If true, enables the cross result
  */
-void nostatic_interp_config_set_cross_result(interp_config * c, bool cross_result) {
+void __nostatic__interp_config_set_cross_result(interp_config * c, bool cross_result) {
     return interp_config_set_cross_result(c, cross_result);
 }
 
@@ -1076,7 +1076,7 @@ void nostatic_interp_config_set_cross_result(interp_config * c, bool cross_resul
  * \param c Pointer to interpolation config
  * \param  _signed If true, enables sign extension
  */
-void nostatic_interp_config_set_signed(interp_config * c, bool _signed) {
+void __nostatic__interp_config_set_signed(interp_config * c, bool _signed) {
     return interp_config_set_signed(c, _signed);
 }
 
@@ -1089,7 +1089,7 @@ void nostatic_interp_config_set_signed(interp_config * c, bool _signed) {
  * \param c Pointer to interpolation config
  * \param add_raw If true, enable raw add option.
  */
-void nostatic_interp_config_set_add_raw(interp_config * c, bool add_raw) {
+void __nostatic__interp_config_set_add_raw(interp_config * c, bool add_raw) {
     return interp_config_set_add_raw(c, add_raw);
 }
 
@@ -1104,7 +1104,7 @@ void nostatic_interp_config_set_add_raw(interp_config * c, bool add_raw) {
  * \param c Pointer to interpolation config
  * \param clamp Set true to enable clamp mode
  */
-void nostatic_interp_config_set_clamp(interp_config * c, bool clamp) {
+void __nostatic__interp_config_set_clamp(interp_config * c, bool clamp) {
     return interp_config_set_clamp(c, clamp);
 }
 
@@ -1120,7 +1120,7 @@ void nostatic_interp_config_set_clamp(interp_config * c, bool clamp) {
  * \param c Pointer to interpolation config
  * \param bits Sets the force bits to that specified. Range 0-3 (two bits)
  */
-void nostatic_interp_config_set_force_bits(interp_config * c, uint bits) {
+void __nostatic__interp_config_set_force_bits(interp_config * c, uint bits) {
     return interp_config_set_force_bits(c, bits);
 }
 
@@ -1130,7 +1130,7 @@ void nostatic_interp_config_set_force_bits(interp_config * c, uint bits) {
  *
  * \return A default interpolation configuration
  */
-interp_config nostatic_interp_default_config() {
+interp_config __nostatic__interp_default_config() {
     return interp_default_config();
 }
 
@@ -1145,7 +1145,7 @@ interp_config nostatic_interp_default_config() {
  * \param lane The lane to set
  * \param config Pointer to interpolation config
  */
-void nostatic_interp_set_config(interp_hw_t * interp, uint lane, interp_config * config) {
+void __nostatic__interp_set_config(interp_hw_t * interp, uint lane, interp_config * config) {
     return interp_set_config(interp, lane, config);
 }
 
@@ -1163,7 +1163,7 @@ void nostatic_interp_set_config(interp_hw_t * interp, uint lane, interp_config *
  * \param lane The lane to set
  * \param bits The bits to set (bits 0 and 1, value range 0-3)
  */
-void nostatic_interp_set_force_bits(interp_hw_t * interp, uint lane, uint bits) {
+void __nostatic__interp_set_force_bits(interp_hw_t * interp, uint lane, uint bits) {
     return interp_set_force_bits(interp, lane, bits);
 }
 
@@ -1175,7 +1175,7 @@ void nostatic_interp_set_force_bits(interp_hw_t * interp, uint lane, uint bits) 
  * \param lane The lane number, 0 or 1 or 2
  * \param val The value to apply to the register
  */
-void nostatic_interp_set_base(interp_hw_t * interp, uint lane, uint32_t val) {
+void __nostatic__interp_set_base(interp_hw_t * interp, uint lane, uint32_t val) {
     return interp_set_base(interp, lane, val);
 }
 
@@ -1187,7 +1187,7 @@ void nostatic_interp_set_base(interp_hw_t * interp, uint lane, uint32_t val) {
  * \param lane The lane number, 0 or 1 or 2
  * \return  The current content of the lane base register
  */
-uint32_t nostatic_interp_get_base(interp_hw_t * interp, uint lane) {
+uint32_t __nostatic__interp_get_base(interp_hw_t * interp, uint lane) {
     return interp_get_base(interp, lane);
 }
 
@@ -1201,7 +1201,7 @@ uint32_t nostatic_interp_get_base(interp_hw_t * interp, uint lane) {
  * \param interp Interpolator instance, interp0 or interp1.
  * \param val The value to apply to the register
  */
-void nostatic_interp_set_base_both(interp_hw_t * interp, uint32_t val) {
+void __nostatic__interp_set_base_both(interp_hw_t * interp, uint32_t val) {
     return interp_set_base_both(interp, val);
 }
 
@@ -1213,7 +1213,7 @@ void nostatic_interp_set_base_both(interp_hw_t * interp, uint32_t val) {
  * \param lane The lane number, 0 or 1
  * \param val The value to apply to the register
  */
-void nostatic_interp_set_accumulator(interp_hw_t * interp, uint lane, uint32_t val) {
+void __nostatic__interp_set_accumulator(interp_hw_t * interp, uint lane, uint32_t val) {
     return interp_set_accumulator(interp, lane, val);
 }
 
@@ -1225,7 +1225,7 @@ void nostatic_interp_set_accumulator(interp_hw_t * interp, uint lane, uint32_t v
  * \param lane The lane number, 0 or 1
  * \return The current content of the register
  */
-uint32_t nostatic_interp_get_accumulator(interp_hw_t * interp, uint lane) {
+uint32_t __nostatic__interp_get_accumulator(interp_hw_t * interp, uint lane) {
     return interp_get_accumulator(interp, lane);
 }
 
@@ -1237,7 +1237,7 @@ uint32_t nostatic_interp_get_accumulator(interp_hw_t * interp, uint lane) {
  * \param lane The lane number, 0 or 1
  * \return The content of the lane result register
  */
-uint32_t nostatic_interp_pop_lane_result(interp_hw_t * interp, uint lane) {
+uint32_t __nostatic__interp_pop_lane_result(interp_hw_t * interp, uint lane) {
     return interp_pop_lane_result(interp, lane);
 }
 
@@ -1249,7 +1249,7 @@ uint32_t nostatic_interp_pop_lane_result(interp_hw_t * interp, uint lane) {
  * \param lane The lane number, 0 or 1
  * \return The content of the lane result register
  */
-uint32_t nostatic_interp_peek_lane_result(interp_hw_t * interp, uint lane) {
+uint32_t __nostatic__interp_peek_lane_result(interp_hw_t * interp, uint lane) {
     return interp_peek_lane_result(interp, lane);
 }
 
@@ -1260,7 +1260,7 @@ uint32_t nostatic_interp_peek_lane_result(interp_hw_t * interp, uint lane) {
  * \param interp Interpolator instance, interp0 or interp1.
  * \return The content of the FULL register
  */
-uint32_t nostatic_interp_pop_full_result(interp_hw_t * interp) {
+uint32_t __nostatic__interp_pop_full_result(interp_hw_t * interp) {
     return interp_pop_full_result(interp);
 }
 
@@ -1271,7 +1271,7 @@ uint32_t nostatic_interp_pop_full_result(interp_hw_t * interp) {
  * \param interp Interpolator instance, interp0 or interp1.
  * \return The content of the FULL register
  */
-uint32_t nostatic_interp_peek_full_result(interp_hw_t * interp) {
+uint32_t __nostatic__interp_peek_full_result(interp_hw_t * interp) {
     return interp_peek_full_result(interp);
 }
 
@@ -1286,7 +1286,7 @@ uint32_t nostatic_interp_peek_full_result(interp_hw_t * interp) {
  * \param val Value to add
  * \return The content of the FULL register
  */
-void nostatic_interp_add_accumulater(interp_hw_t * interp, uint lane, uint32_t val) {
+void __nostatic__interp_add_accumulater(interp_hw_t * interp, uint lane, uint32_t val) {
     return interp_add_accumulater(interp, lane, val);
 }
 
@@ -1300,7 +1300,7 @@ void nostatic_interp_add_accumulater(interp_hw_t * interp, uint lane, uint32_t v
  * \param lane The lane number, 0 or 1
  * \return The raw shift/mask value
  */
-uint32_t nostatic_interp_get_raw(interp_hw_t * interp, uint lane) {
+uint32_t __nostatic__interp_get_raw(interp_hw_t * interp, uint lane) {
     return interp_get_raw(interp, lane);
 }
 
@@ -1314,7 +1314,7 @@ uint32_t nostatic_interp_get_raw(interp_hw_t * interp, uint lane) {
  * \param c2 the second character
  * \return the 'code' to use in rom_func_lookup() or rom_data_lookup()
  */
-uint32_t nostatic_rom_table_code(uint8_t c1, uint8_t c2) {
+uint32_t __nostatic__rom_table_code(uint8_t c1, uint8_t c2) {
     return rom_table_code(c1, c2);
 }
 
@@ -1336,7 +1336,7 @@ uint32_t nostatic_rom_table_code(uint8_t c1, uint8_t c2) {
  *  - 1 To disable the USB Mass Storage Interface
  *  - 2 To disable the USB PICOBOOT Interface
  */
-void nostatic_reset_usb_boot(uint32_t usb_activity_gpio_pin_mask, uint32_t disable_interface_mask) {
+void __nostatic__reset_usb_boot(uint32_t usb_activity_gpio_pin_mask, uint32_t disable_interface_mask) {
     return reset_usb_boot(usb_activity_gpio_pin_mask, disable_interface_mask);
 }
 
@@ -1347,7 +1347,7 @@ void nostatic_reset_usb_boot(uint32_t usb_activity_gpio_pin_mask, uint32_t disab
  * \param uart UART instance
  * \return Number of UART, 0 or 1.
  */
-uint nostatic_uart_get_index(uart_inst_t * uart) {
+uint __nostatic__uart_get_index(uart_inst_t * uart) {
     return uart_get_index(uart);
 }
 
@@ -1359,7 +1359,7 @@ uint nostatic_uart_get_index(uart_inst_t * uart) {
  * \param cts If true enable flow control of TX  by clear-to-send input
  * \param rts If true enable assertion of request-to-send output by RX flow control
  */
-void nostatic_uart_set_hw_flow(uart_inst_t * uart, bool cts, bool rts) {
+void __nostatic__uart_set_hw_flow(uart_inst_t * uart, bool cts, bool rts) {
     return uart_set_hw_flow(uart, cts, rts);
 }
 
@@ -1374,7 +1374,7 @@ void nostatic_uart_set_hw_flow(uart_inst_t * uart, bool cts, bool rts) {
  * \param stop_bits Number of stop bits 1..2
  * \param parity Parity option.
  */
-void nostatic_uart_set_format(uart_inst_t * uart, uint data_bits, uint stop_bits, uart_parity_t parity) {
+void __nostatic__uart_set_format(uart_inst_t * uart, uint data_bits, uint stop_bits, uart_parity_t parity) {
     return uart_set_format(uart, data_bits, stop_bits, parity);
 }
 
@@ -1389,7 +1389,7 @@ void nostatic_uart_set_format(uart_inst_t * uart, uint data_bits, uint stop_bits
  * \param rx_has_data If true an interrupt will be fired when the RX FIFO contains data.
  * \param tx_needs_data If true an interrupt will be fired when the TX FIFO needs data.
  */
-void nostatic_uart_set_irq_enables(uart_inst_t * uart, bool rx_has_data, bool tx_needs_data) {
+void __nostatic__uart_set_irq_enables(uart_inst_t * uart, bool rx_has_data, bool tx_needs_data) {
     return uart_set_irq_enables(uart, rx_has_data, tx_needs_data);
 }
 
@@ -1400,7 +1400,7 @@ void nostatic_uart_set_irq_enables(uart_inst_t * uart, bool rx_has_data, bool tx
  * \param uart UART instance. \ref uart0 or \ref uart1
  * \return true if the UART is enabled
  */
-bool nostatic_uart_is_enabled(uart_inst_t * uart) {
+bool __nostatic__uart_is_enabled(uart_inst_t * uart) {
     return uart_is_enabled(uart);
 }
 
@@ -1411,7 +1411,7 @@ bool nostatic_uart_is_enabled(uart_inst_t * uart) {
  * \param uart UART instance. \ref uart0 or \ref uart1
  * \param enabled true to enable FIFO (default), false to disable
  */
-void nostatic_uart_set_fifo_enabled(uart_inst_t * uart, bool enabled) {
+void __nostatic__uart_set_fifo_enabled(uart_inst_t * uart, bool enabled) {
     return uart_set_fifo_enabled(uart, enabled);
 }
 
@@ -1422,7 +1422,7 @@ void nostatic_uart_set_fifo_enabled(uart_inst_t * uart, bool enabled) {
  * \param uart UART instance. \ref uart0 or \ref uart1
  * \return false if no space available, true otherwise
  */
-bool nostatic_uart_is_writable(uart_inst_t * uart) {
+bool __nostatic__uart_is_writable(uart_inst_t * uart) {
     return uart_is_writable(uart);
 }
 
@@ -1432,7 +1432,7 @@ bool nostatic_uart_is_writable(uart_inst_t * uart) {
  *
  * \param uart UART instance. \ref uart0 or \ref uart1
  */
-void nostatic_uart_tx_wait_blocking(uart_inst_t * uart) {
+void __nostatic__uart_tx_wait_blocking(uart_inst_t * uart) {
     return uart_tx_wait_blocking(uart);
 }
 
@@ -1445,7 +1445,7 @@ void nostatic_uart_tx_wait_blocking(uart_inst_t * uart) {
  *
  * \note HW limitations mean this function will return either 0 or 1.
  */
-bool nostatic_uart_is_readable(uart_inst_t * uart) {
+bool __nostatic__uart_is_readable(uart_inst_t * uart) {
     return uart_is_readable(uart);
 }
 
@@ -1459,7 +1459,7 @@ bool nostatic_uart_is_readable(uart_inst_t * uart) {
  * \param src The bytes to send
  * \param len The number of bytes to send
  */
-void nostatic_uart_write_blocking(uart_inst_t * uart, const uint8_t * src, size_t len) {
+void __nostatic__uart_write_blocking(uart_inst_t * uart, const uint8_t * src, size_t len) {
     return uart_write_blocking(uart, src, len);
 }
 
@@ -1473,7 +1473,7 @@ void nostatic_uart_write_blocking(uart_inst_t * uart, const uint8_t * src, size_
  * \param dst Buffer to accept received bytes
  * \param len The number of bytes to receive.
  */
-void nostatic_uart_read_blocking(uart_inst_t * uart, uint8_t * dst, size_t len) {
+void __nostatic__uart_read_blocking(uart_inst_t * uart, uint8_t * dst, size_t len) {
     return uart_read_blocking(uart, dst, len);
 }
 
@@ -1486,7 +1486,7 @@ void nostatic_uart_read_blocking(uart_inst_t * uart, uint8_t * dst, size_t len) 
  * \param uart UART instance. \ref uart0 or \ref uart1
  * \param c The character  to send
  */
-void nostatic_uart_putc_raw(uart_inst_t * uart, char c) {
+void __nostatic__uart_putc_raw(uart_inst_t * uart, char c) {
     return uart_putc_raw(uart, c);
 }
 
@@ -1499,7 +1499,7 @@ void nostatic_uart_putc_raw(uart_inst_t * uart, char c) {
  * \param uart UART instance. \ref uart0 or \ref uart1
  * \param c The character  to send
  */
-void nostatic_uart_putc(uart_inst_t * uart, char c) {
+void __nostatic__uart_putc(uart_inst_t * uart, char c) {
     return uart_putc(uart, c);
 }
 
@@ -1512,7 +1512,7 @@ void nostatic_uart_putc(uart_inst_t * uart, char c) {
  * \param uart UART instance. \ref uart0 or \ref uart1
  * \param s The null terminated string to send
  */
-void nostatic_uart_puts(uart_inst_t * uart, const char * s) {
+void __nostatic__uart_puts(uart_inst_t * uart, const char * s) {
     return uart_puts(uart, s);
 }
 
@@ -1525,7 +1525,7 @@ void nostatic_uart_puts(uart_inst_t * uart, const char * s) {
  * \param uart UART instance. \ref uart0 or \ref uart1
  * \return The character read.
  */
-char nostatic_uart_getc(uart_inst_t * uart) {
+char __nostatic__uart_getc(uart_inst_t * uart) {
     return uart_getc(uart);
 }
 
@@ -1536,7 +1536,7 @@ char nostatic_uart_getc(uart_inst_t * uart) {
  * \param uart UART instance. \ref uart0 or \ref uart1
  * \param en Assert break condition (TX held low) if true. Clear break condition if false.
  */
-void nostatic_uart_set_break(uart_inst_t * uart, bool en) {
+void __nostatic__uart_set_break(uart_inst_t * uart, bool en) {
     return uart_set_break(uart, en);
 }
 
@@ -1544,7 +1544,7 @@ void nostatic_uart_set_break(uart_inst_t * uart, bool en) {
 /*! \brief Wait for the default UART's TX FIFO to be drained
  *  \ingroup hardware_uart
  */
-void nostatic_uart_default_tx_wait_blocking() {
+void __nostatic__uart_default_tx_wait_blocking() {
     return uart_default_tx_wait_blocking();
 }
 
@@ -1555,7 +1555,7 @@ void nostatic_uart_default_tx_wait_blocking() {
  * \param uart UART instance. \ref uart0 or \ref uart1
  * \param is_tx true for sending data to the UART instance, false for receiving data from the UART instance
  */
-uint nostatic_uart_get_dreq(uart_inst_t * uart, bool is_tx) {
+uint __nostatic__uart_get_dreq(uart_inst_t * uart, bool is_tx) {
     return uart_get_dreq(uart, is_tx);
 }
 
@@ -1566,7 +1566,7 @@ uint nostatic_uart_get_dreq(uart_inst_t * uart, bool is_tx) {
  * \param t Absolute time to compare against current time
  * \return true if it is now after the specified timestamp
  */
-bool nostatic_time_reached(absolute_time_t t) {
+bool __nostatic__time_reached(absolute_time_t t) {
     return time_reached(t);
 }
 
@@ -1580,7 +1580,7 @@ bool nostatic_time_reached(absolute_time_t t) {
  * \param out_base 0-31 First pin to set as output
  * \param out_count 0-32 Number of pins to set.
  */
-void nostatic_sm_config_set_out_pins(pio_sm_config * c, uint out_base, uint out_count) {
+void __nostatic__sm_config_set_out_pins(pio_sm_config * c, uint out_base, uint out_count) {
     return sm_config_set_out_pins(c, out_base, out_count);
 }
 
@@ -1594,7 +1594,7 @@ void nostatic_sm_config_set_out_pins(pio_sm_config * c, uint out_base, uint out_
  * \param set_base 0-31 First pin to set as
  * \param set_count 0-5 Number of pins to set.
  */
-void nostatic_sm_config_set_set_pins(pio_sm_config * c, uint set_base, uint set_count) {
+void __nostatic__sm_config_set_set_pins(pio_sm_config * c, uint set_base, uint set_count) {
     return sm_config_set_set_pins(c, set_base, set_count);
 }
 
@@ -1607,7 +1607,7 @@ void nostatic_sm_config_set_set_pins(pio_sm_config * c, uint set_base, uint set_
  * \param c Pointer to the configuration structure to modify
  * \param in_base 0-31 First pin to use as input
  */
-void nostatic_sm_config_set_in_pins(pio_sm_config * c, uint in_base) {
+void __nostatic__sm_config_set_in_pins(pio_sm_config * c, uint in_base) {
     return sm_config_set_in_pins(c, in_base);
 }
 
@@ -1620,7 +1620,7 @@ void nostatic_sm_config_set_in_pins(pio_sm_config * c, uint in_base) {
  * \param c Pointer to the configuration structure to modify
  * \param sideset_base 0-31 base pin for 'side set'
  */
-void nostatic_sm_config_set_sideset_pins(pio_sm_config * c, uint sideset_base) {
+void __nostatic__sm_config_set_sideset_pins(pio_sm_config * c, uint sideset_base) {
     return sm_config_set_sideset_pins(c, sideset_base);
 }
 
@@ -1633,7 +1633,7 @@ void nostatic_sm_config_set_sideset_pins(pio_sm_config * c, uint sideset_base) {
  * \param optional True if the topmost side set bit is used as a flag for whether to apply side set on that instruction
  * \param pindirs True if the side set affects pin directions rather than values
  */
-void nostatic_sm_config_set_sideset(pio_sm_config * c, uint bit_count, bool optional, bool pindirs) {
+void __nostatic__sm_config_set_sideset(pio_sm_config * c, uint bit_count, bool optional, bool pindirs) {
     return sm_config_set_sideset(c, bit_count, optional, pindirs);
 }
 
@@ -1651,7 +1651,7 @@ void nostatic_sm_config_set_sideset(pio_sm_config * c, uint bit_count, bool opti
  * \param div_frac Fractional part in 1/256ths
  * \sa sm_config_set_clkdiv()
  */
-void nostatic_sm_config_set_clkdiv_int_frac(pio_sm_config * c, uint16_t div_int, uint8_t div_frac) {
+void __nostatic__sm_config_set_clkdiv_int_frac(pio_sm_config * c, uint16_t div_int, uint8_t div_frac) {
     return sm_config_set_clkdiv_int_frac(c, div_int, div_frac);
 }
 
@@ -1671,7 +1671,7 @@ void nostatic_sm_config_set_clkdiv_int_frac(pio_sm_config * c, uint16_t div_int,
  *  Note that for small n, the jitter introduced by a fractional divider (e.g. 2.5) may be unacceptable
  *  although it will depend on the use case.
  */
-void nostatic_sm_config_set_clkdiv(pio_sm_config * c, float div) {
+void __nostatic__sm_config_set_clkdiv(pio_sm_config * c, float div) {
     return sm_config_set_clkdiv(c, div);
 }
 
@@ -1684,7 +1684,7 @@ void nostatic_sm_config_set_clkdiv(pio_sm_config * c, float div) {
  * \param wrap        the instruction memory address after which to set the program counter to wrap_target
  *                    if the instruction does not itself update the program_counter
  */
-void nostatic_sm_config_set_wrap(pio_sm_config * c, uint wrap_target, uint wrap) {
+void __nostatic__sm_config_set_wrap(pio_sm_config * c, uint wrap_target, uint wrap) {
     return sm_config_set_wrap(c, wrap_target, wrap);
 }
 
@@ -1695,7 +1695,7 @@ void nostatic_sm_config_set_wrap(pio_sm_config * c, uint wrap_target, uint wrap)
  * \param c Pointer to the configuration structure to modify
  * \param pin The raw GPIO pin number to use as the source for a `jmp pin` instruction
  */
-void nostatic_sm_config_set_jmp_pin(pio_sm_config * c, uint pin) {
+void __nostatic__sm_config_set_jmp_pin(pio_sm_config * c, uint pin) {
     return sm_config_set_jmp_pin(c, pin);
 }
 
@@ -1708,7 +1708,7 @@ void nostatic_sm_config_set_jmp_pin(pio_sm_config * c, uint pin) {
  * \param autopush whether autopush is enabled
  * \param push_threshold threshold in bits to shift in before auto/conditional re-pushing of the ISR
  */
-void nostatic_sm_config_set_in_shift(pio_sm_config * c, bool shift_right, bool autopush, uint push_threshold) {
+void __nostatic__sm_config_set_in_shift(pio_sm_config * c, bool shift_right, bool autopush, uint push_threshold) {
     return sm_config_set_in_shift(c, shift_right, autopush, push_threshold);
 }
 
@@ -1721,7 +1721,7 @@ void nostatic_sm_config_set_in_shift(pio_sm_config * c, bool shift_right, bool a
  * \param autopull whether autopull is enabled
  * \param pull_threshold threshold in bits to shift out before auto/conditional re-pulling of the OSR
  */
-void nostatic_sm_config_set_out_shift(pio_sm_config * c, bool shift_right, bool autopull, uint pull_threshold) {
+void __nostatic__sm_config_set_out_shift(pio_sm_config * c, bool shift_right, bool autopull, uint pull_threshold) {
     return sm_config_set_out_shift(c, shift_right, autopull, pull_threshold);
 }
 
@@ -1732,7 +1732,7 @@ void nostatic_sm_config_set_out_shift(pio_sm_config * c, bool shift_right, bool 
  * \param c Pointer to the configuration structure to modify
  * \param join Specifies the join type. \see enum pio_fifo_join
  */
-void nostatic_sm_config_set_fifo_join(pio_sm_config * c, enum pio_fifo_join join) {
+void __nostatic__sm_config_set_fifo_join(pio_sm_config * c, enum pio_fifo_join join) {
     return sm_config_set_fifo_join(c, join);
 }
 
@@ -1745,7 +1745,7 @@ void nostatic_sm_config_set_fifo_join(pio_sm_config * c, enum pio_fifo_join join
  * \param has_enable_pin true to enable auxiliary OUT enable pin
  * \param enable_pin_index pin index for auxiliary OUT enable
  */
-void nostatic_sm_config_set_out_special(pio_sm_config * c, bool sticky, bool has_enable_pin, uint enable_pin_index) {
+void __nostatic__sm_config_set_out_special(pio_sm_config * c, bool sticky, bool has_enable_pin, uint enable_pin_index) {
     return sm_config_set_out_special(c, sticky, has_enable_pin, enable_pin_index);
 }
 
@@ -1757,7 +1757,7 @@ void nostatic_sm_config_set_out_special(pio_sm_config * c, bool sticky, bool has
  * \param status_sel the status operation selector. \see enum pio_mov_status_type
  * \param status_n parameter for the mov status operation (currently a bit count)
  */
-void nostatic_sm_config_set_mov_status(pio_sm_config * c, enum pio_mov_status_type status_sel, uint status_n) {
+void __nostatic__sm_config_set_mov_status(pio_sm_config * c, enum pio_mov_status_type status_sel, uint status_n) {
     return sm_config_set_mov_status(c, status_sel, status_n);
 }
 
@@ -1781,7 +1781,7 @@ void nostatic_sm_config_set_mov_status(pio_sm_config * c, enum pio_mov_status_ty
  *
  * \return the default state machine configuration which can then be modified.
  */
-pio_sm_config nostatic_pio_get_default_sm_config() {
+pio_sm_config __nostatic__pio_get_default_sm_config() {
     return pio_get_default_sm_config();
 }
 
@@ -1792,7 +1792,7 @@ pio_sm_config nostatic_pio_get_default_sm_config() {
  * \param pio The PIO instance; either \ref pio0 or \ref pio1
  * \return the PIO instance number (either 0 or 1)
  */
-uint nostatic_pio_get_index(PIO pio) {
+uint __nostatic__pio_get_index(PIO pio) {
     return pio_get_index(pio);
 }
 
@@ -1809,7 +1809,7 @@ uint nostatic_pio_get_index(PIO pio) {
  * \param pio The PIO instance; either \ref pio0 or \ref pio1
  * \param pin the GPIO pin whose function select to set
  */
-void nostatic_pio_gpio_init(PIO pio, uint pin) {
+void __nostatic__pio_gpio_init(PIO pio, uint pin) {
     return pio_gpio_init(pio, pin);
 }
 
@@ -1821,7 +1821,7 @@ void nostatic_pio_gpio_init(PIO pio, uint pin) {
  * \param sm State machine index (0..3)
  * \param is_tx true for sending data to the state machine, false for receiving data from the state machine
  */
-uint nostatic_pio_get_dreq(PIO pio, uint sm, bool is_tx) {
+uint __nostatic__pio_get_dreq(PIO pio, uint sm, bool is_tx) {
     return pio_get_dreq(pio, sm, is_tx);
 }
 
@@ -1833,7 +1833,7 @@ uint nostatic_pio_get_dreq(PIO pio, uint sm, bool is_tx) {
  * \param sm State machine index (0..3)
  * \param enabled true to enable the state machine; false to disable
  */
-void nostatic_pio_sm_set_enabled(PIO pio, uint sm, bool enabled) {
+void __nostatic__pio_sm_set_enabled(PIO pio, uint sm, bool enabled) {
     return pio_sm_set_enabled(pio, sm, enabled);
 }
 
@@ -1851,7 +1851,7 @@ void nostatic_pio_sm_set_enabled(PIO pio, uint sm, bool enabled) {
  * \param mask bit mask of state machine indexes to modify the enabled state of
  * \param enabled true to enable the state machines; false to disable
  */
-void nostatic_pio_set_sm_mask_enabled(PIO pio, uint32_t mask, bool enabled) {
+void __nostatic__pio_set_sm_mask_enabled(PIO pio, uint32_t mask, bool enabled) {
     return pio_set_sm_mask_enabled(pio, mask, enabled);
 }
 
@@ -1865,7 +1865,7 @@ void nostatic_pio_set_sm_mask_enabled(PIO pio, uint32_t mask, bool enabled) {
  * \param pio The PIO instance; either \ref pio0 or \ref pio1
  * \param sm State machine index (0..3)
  */
-void nostatic_pio_sm_restart(PIO pio, uint sm) {
+void __nostatic__pio_sm_restart(PIO pio, uint sm) {
     return pio_sm_restart(pio, sm);
 }
 
@@ -1879,7 +1879,7 @@ void nostatic_pio_sm_restart(PIO pio, uint sm) {
  * \param pio The PIO instance; either \ref pio0 or \ref pio1
  * \param mask bit mask of state machine indexes to modify the enabled state of
  */
-void nostatic_pio_restart_sm_mask(PIO pio, uint32_t mask) {
+void __nostatic__pio_restart_sm_mask(PIO pio, uint32_t mask) {
     return pio_restart_sm_mask(pio, mask);
 }
 
@@ -1905,7 +1905,7 @@ void nostatic_pio_restart_sm_mask(PIO pio, uint32_t mask) {
  * \param pio The PIO instance; either \ref pio0 or \ref pio1
  * \param sm State machine index (0..3)
  */
-void nostatic_pio_sm_clkdiv_restart(PIO pio, uint sm) {
+void __nostatic__pio_sm_clkdiv_restart(PIO pio, uint sm) {
     return pio_sm_clkdiv_restart(pio, sm);
 }
 
@@ -1939,7 +1939,7 @@ void nostatic_pio_sm_clkdiv_restart(PIO pio, uint sm) {
  * \param pio The PIO instance; either \ref pio0 or \ref pio1
  * \param mask bit mask of state machine indexes to modify the enabled state of
  */
-void nostatic_pio_clkdiv_restart_sm_mask(PIO pio, uint32_t mask) {
+void __nostatic__pio_clkdiv_restart_sm_mask(PIO pio, uint32_t mask) {
     return pio_clkdiv_restart_sm_mask(pio, mask);
 }
 
@@ -1955,7 +1955,7 @@ void nostatic_pio_clkdiv_restart_sm_mask(PIO pio, uint32_t mask) {
  * \param pio The PIO instance; either \ref pio0 or \ref pio1
  * \param mask bit mask of state machine indexes to modify the enabled state of
  */
-void nostatic_pio_enable_sm_mask_in_sync(PIO pio, uint32_t mask) {
+void __nostatic__pio_enable_sm_mask_in_sync(PIO pio, uint32_t mask) {
     return pio_enable_sm_mask_in_sync(pio, mask);
 }
 
@@ -1967,7 +1967,7 @@ void nostatic_pio_enable_sm_mask_in_sync(PIO pio, uint32_t mask) {
  * \param source the source number (see \ref pio_interrupt_source)
  * \param enabled true to enable IRQ 0 for the source, false to disable.
  */
-void nostatic_pio_set_irq0_source_enabled(PIO pio, enum pio_interrupt_source source, bool enabled) {
+void __nostatic__pio_set_irq0_source_enabled(PIO pio, enum pio_interrupt_source source, bool enabled) {
     return pio_set_irq0_source_enabled(pio, source, enabled);
 }
 
@@ -1979,7 +1979,7 @@ void nostatic_pio_set_irq0_source_enabled(PIO pio, enum pio_interrupt_source sou
  * \param source the source number (see \ref pio_interrupt_source)
  * \param enabled true to enable IRQ 0 for the source, false to disable.
  */
-void nostatic_pio_set_irq1_source_enabled(PIO pio, enum pio_interrupt_source source, bool enabled) {
+void __nostatic__pio_set_irq1_source_enabled(PIO pio, enum pio_interrupt_source source, bool enabled) {
     return pio_set_irq1_source_enabled(pio, source, enabled);
 }
 
@@ -1991,7 +1991,7 @@ void nostatic_pio_set_irq1_source_enabled(PIO pio, enum pio_interrupt_source sou
  * \param source_mask Mask of bits, one for each source number (see \ref pio_interrupt_source) to affect
  * \param enabled true to enable all the sources specified in the mask on IRQ 0, false to disable all the sources specified in the mask on IRQ 0
  */
-void nostatic_pio_set_irq0_source_mask_enabled(PIO pio, uint32_t source_mask, bool enabled) {
+void __nostatic__pio_set_irq0_source_mask_enabled(PIO pio, uint32_t source_mask, bool enabled) {
     return pio_set_irq0_source_mask_enabled(pio, source_mask, enabled);
 }
 
@@ -2003,7 +2003,7 @@ void nostatic_pio_set_irq0_source_mask_enabled(PIO pio, uint32_t source_mask, bo
  * \param source_mask Mask of bits, one for each source number (see \ref pio_interrupt_source) to affect
  * \param enabled true to enable all the sources specified in the mask on IRQ 1, false to disable all the source specified in the mask on IRQ 1
  */
-void nostatic_pio_set_irq1_source_mask_enabled(PIO pio, uint32_t source_mask, bool enabled) {
+void __nostatic__pio_set_irq1_source_mask_enabled(PIO pio, uint32_t source_mask, bool enabled) {
     return pio_set_irq1_source_mask_enabled(pio, source_mask, enabled);
 }
 
@@ -2016,7 +2016,7 @@ void nostatic_pio_set_irq1_source_mask_enabled(PIO pio, uint32_t source_mask, bo
  * \param source the source number (see \ref pio_interrupt_source)
  * \param enabled true to enable the source on the specified IRQ, false to disable.
  */
-void nostatic_pio_set_irqn_source_enabled(PIO pio, uint irq_index, enum pio_interrupt_source source, bool enabled) {
+void __nostatic__pio_set_irqn_source_enabled(PIO pio, uint irq_index, enum pio_interrupt_source source, bool enabled) {
     return pio_set_irqn_source_enabled(pio, irq_index, source, enabled);
 }
 
@@ -2029,7 +2029,7 @@ void nostatic_pio_set_irqn_source_enabled(PIO pio, uint irq_index, enum pio_inte
  * \param source_mask Mask of bits, one for each source number (see \ref pio_interrupt_source) to affect
  * \param enabled true to enable all the sources specified in the mask on the specified IRQ, false to disable all the sources specified in the mask on the specified IRQ
  */
-void nostatic_pio_set_irqn_source_mask_enabled(PIO pio, uint irq_index, uint32_t source_mask, bool enabled) {
+void __nostatic__pio_set_irqn_source_mask_enabled(PIO pio, uint irq_index, uint32_t source_mask, bool enabled) {
     return pio_set_irqn_source_mask_enabled(pio, irq_index, source_mask, enabled);
 }
 
@@ -2041,7 +2041,7 @@ void nostatic_pio_set_irqn_source_mask_enabled(PIO pio, uint irq_index, uint32_t
  * \param pio_interrupt_num the PIO interrupt number 0-7
  * \return true if corresponding PIO interrupt is currently set
  */
-bool nostatic_pio_interrupt_get(PIO pio, uint pio_interrupt_num) {
+bool __nostatic__pio_interrupt_get(PIO pio, uint pio_interrupt_num) {
     return pio_interrupt_get(pio, pio_interrupt_num);
 }
 
@@ -2052,7 +2052,7 @@ bool nostatic_pio_interrupt_get(PIO pio, uint pio_interrupt_num) {
  * \param pio The PIO instance; either \ref pio0 or \ref pio1
  * \param pio_interrupt_num the PIO interrupt number 0-7
  */
-void nostatic_pio_interrupt_clear(PIO pio, uint pio_interrupt_num) {
+void __nostatic__pio_interrupt_clear(PIO pio, uint pio_interrupt_num) {
     return pio_interrupt_clear(pio, pio_interrupt_num);
 }
 
@@ -2064,7 +2064,7 @@ void nostatic_pio_interrupt_clear(PIO pio, uint pio_interrupt_num) {
  * \param sm State machine index (0..3)
  * \return the program counter
  */
-uint8_t nostatic_pio_sm_get_pc(PIO pio, uint sm) {
+uint8_t __nostatic__pio_sm_get_pc(PIO pio, uint sm) {
     return pio_sm_get_pc(pio, sm);
 }
 
@@ -2076,7 +2076,7 @@ uint8_t nostatic_pio_sm_get_pc(PIO pio, uint sm) {
  * \param sm State machine index (0..3)
  * \return true if the executed instruction is still running (stalled)
  */
-bool nostatic_pio_sm_is_exec_stalled(PIO pio, uint sm) {
+bool __nostatic__pio_sm_is_exec_stalled(PIO pio, uint sm) {
     return pio_sm_is_exec_stalled(pio, sm);
 }
 
@@ -2093,7 +2093,7 @@ bool nostatic_pio_sm_is_exec_stalled(PIO pio, uint sm) {
  * \param sm State machine index (0..3)
  * \param instr the encoded PIO instruction
  */
-void nostatic_pio_sm_exec_wait_blocking(PIO pio, uint sm, uint instr) {
+void __nostatic__pio_sm_exec_wait_blocking(PIO pio, uint sm, uint instr) {
     return pio_sm_exec_wait_blocking(pio, sm, instr);
 }
 
@@ -2107,7 +2107,7 @@ void nostatic_pio_sm_exec_wait_blocking(PIO pio, uint sm, uint instr) {
  * \param wrap        the instruction memory address after which to set the program counter to wrap_target
  *                    if the instruction does not itself update the program_counter
  */
-void nostatic_pio_sm_set_wrap(PIO pio, uint sm, uint wrap_target, uint wrap) {
+void __nostatic__pio_sm_set_wrap(PIO pio, uint sm, uint wrap_target, uint wrap) {
     return pio_sm_set_wrap(pio, sm, wrap_target, wrap);
 }
 
@@ -2122,7 +2122,7 @@ void nostatic_pio_sm_set_wrap(PIO pio, uint sm, uint wrap_target, uint wrap) {
  * \param out_base 0-31 First pin to set as output
  * \param out_count 0-32 Number of pins to set.
  */
-void nostatic_pio_sm_set_out_pins(PIO pio, uint sm, uint out_base, uint out_count) {
+void __nostatic__pio_sm_set_out_pins(PIO pio, uint sm, uint out_base, uint out_count) {
     return pio_sm_set_out_pins(pio, sm, out_base, out_count);
 }
 
@@ -2137,7 +2137,7 @@ void nostatic_pio_sm_set_out_pins(PIO pio, uint sm, uint out_base, uint out_coun
  * \param set_base 0-31 First pin to set as
  * \param set_count 0-5 Number of pins to set.
  */
-void nostatic_pio_sm_set_set_pins(PIO pio, uint sm, uint set_base, uint set_count) {
+void __nostatic__pio_sm_set_set_pins(PIO pio, uint sm, uint set_base, uint set_count) {
     return pio_sm_set_set_pins(pio, sm, set_base, set_count);
 }
 
@@ -2151,7 +2151,7 @@ void nostatic_pio_sm_set_set_pins(PIO pio, uint sm, uint set_base, uint set_coun
  * \param sm State machine index (0..3)
  * \param in_base 0-31 First pin to use as input
  */
-void nostatic_pio_sm_set_in_pins(PIO pio, uint sm, uint in_base) {
+void __nostatic__pio_sm_set_in_pins(PIO pio, uint sm, uint in_base) {
     return pio_sm_set_in_pins(pio, sm, in_base);
 }
 
@@ -2165,7 +2165,7 @@ void nostatic_pio_sm_set_in_pins(PIO pio, uint sm, uint in_base) {
  * \param sm State machine index (0..3)
  * \param sideset_base 0-31 base pin for 'side set'
  */
-void nostatic_pio_sm_set_sideset_pins(PIO pio, uint sm, uint sideset_base) {
+void __nostatic__pio_sm_set_sideset_pins(PIO pio, uint sm, uint sideset_base) {
     return pio_sm_set_sideset_pins(pio, sm, sideset_base);
 }
 
@@ -2184,7 +2184,7 @@ void nostatic_pio_sm_set_sideset_pins(PIO pio, uint sm, uint sideset_base) {
  *
  * \sa pio_sm_put_blocking()
  */
-void nostatic_pio_sm_put(PIO pio, uint sm, uint32_t data) {
+void __nostatic__pio_sm_put(PIO pio, uint sm, uint32_t data) {
     return pio_sm_put(pio, sm, data);
 }
 
@@ -2204,7 +2204,7 @@ void nostatic_pio_sm_put(PIO pio, uint sm, uint32_t data) {
  *
  * \sa pio_sm_get_blocking()
  */
-uint32_t nostatic_pio_sm_get(PIO pio, uint sm) {
+uint32_t __nostatic__pio_sm_get(PIO pio, uint sm) {
     return pio_sm_get(pio, sm);
 }
 
@@ -2216,7 +2216,7 @@ uint32_t nostatic_pio_sm_get(PIO pio, uint sm) {
  * \param sm State machine index (0..3)
  * \return true if the RX FIFO is full
  */
-bool nostatic_pio_sm_is_rx_fifo_full(PIO pio, uint sm) {
+bool __nostatic__pio_sm_is_rx_fifo_full(PIO pio, uint sm) {
     return pio_sm_is_rx_fifo_full(pio, sm);
 }
 
@@ -2228,7 +2228,7 @@ bool nostatic_pio_sm_is_rx_fifo_full(PIO pio, uint sm) {
  * \param sm State machine index (0..3)
  * \return true if the RX FIFO is empty
  */
-bool nostatic_pio_sm_is_rx_fifo_empty(PIO pio, uint sm) {
+bool __nostatic__pio_sm_is_rx_fifo_empty(PIO pio, uint sm) {
     return pio_sm_is_rx_fifo_empty(pio, sm);
 }
 
@@ -2240,7 +2240,7 @@ bool nostatic_pio_sm_is_rx_fifo_empty(PIO pio, uint sm) {
  * \param sm State machine index (0..3)
  * \return the number of elements in the RX FIFO
  */
-uint nostatic_pio_sm_get_rx_fifo_level(PIO pio, uint sm) {
+uint __nostatic__pio_sm_get_rx_fifo_level(PIO pio, uint sm) {
     return pio_sm_get_rx_fifo_level(pio, sm);
 }
 
@@ -2252,7 +2252,7 @@ uint nostatic_pio_sm_get_rx_fifo_level(PIO pio, uint sm) {
  * \param sm State machine index (0..3)
  * \return true if the TX FIFO is full
  */
-bool nostatic_pio_sm_is_tx_fifo_full(PIO pio, uint sm) {
+bool __nostatic__pio_sm_is_tx_fifo_full(PIO pio, uint sm) {
     return pio_sm_is_tx_fifo_full(pio, sm);
 }
 
@@ -2264,7 +2264,7 @@ bool nostatic_pio_sm_is_tx_fifo_full(PIO pio, uint sm) {
  * \param sm State machine index (0..3)
  * \return true if the TX FIFO is empty
  */
-bool nostatic_pio_sm_is_tx_fifo_empty(PIO pio, uint sm) {
+bool __nostatic__pio_sm_is_tx_fifo_empty(PIO pio, uint sm) {
     return pio_sm_is_tx_fifo_empty(pio, sm);
 }
 
@@ -2276,7 +2276,7 @@ bool nostatic_pio_sm_is_tx_fifo_empty(PIO pio, uint sm) {
  * \param sm State machine index (0..3)
  * \return the number of elements in the TX FIFO
  */
-uint nostatic_pio_sm_get_tx_fifo_level(PIO pio, uint sm) {
+uint __nostatic__pio_sm_get_tx_fifo_level(PIO pio, uint sm) {
     return pio_sm_get_tx_fifo_level(pio, sm);
 }
 
@@ -2288,7 +2288,7 @@ uint nostatic_pio_sm_get_tx_fifo_level(PIO pio, uint sm) {
  * \param sm State machine index (0..3)
  * \param data the 32 bit data value
  */
-void nostatic_pio_sm_put_blocking(PIO pio, uint sm, uint32_t data) {
+void __nostatic__pio_sm_put_blocking(PIO pio, uint sm, uint32_t data) {
     return pio_sm_put_blocking(pio, sm, data);
 }
 
@@ -2299,7 +2299,7 @@ void nostatic_pio_sm_put_blocking(PIO pio, uint sm, uint32_t data) {
  * \param pio The PIO instance; either \ref pio0 or \ref pio1
  * \param sm State machine index (0..3)
  */
-uint32_t nostatic_pio_sm_get_blocking(PIO pio, uint sm) {
+uint32_t __nostatic__pio_sm_get_blocking(PIO pio, uint sm) {
     return pio_sm_get_blocking(pio, sm);
 }
 
@@ -2312,7 +2312,7 @@ uint32_t nostatic_pio_sm_get_blocking(PIO pio, uint sm) {
  * \param div_int the integer part of the clock divider
  * \param div_frac the fractional part of the clock divider in 1/256s
  */
-void nostatic_pio_sm_set_clkdiv_int_frac(PIO pio, uint sm, uint16_t div_int, uint8_t div_frac) {
+void __nostatic__pio_sm_set_clkdiv_int_frac(PIO pio, uint sm, uint16_t div_int, uint8_t div_frac) {
     return pio_sm_set_clkdiv_int_frac(pio, sm, div_int, div_frac);
 }
 
@@ -2324,7 +2324,7 @@ void nostatic_pio_sm_set_clkdiv_int_frac(PIO pio, uint sm, uint16_t div_int, uin
  * \param sm State machine index (0..3)
  * \param div the floating point clock divider
  */
-void nostatic_pio_sm_set_clkdiv(PIO pio, uint sm, float div) {
+void __nostatic__pio_sm_set_clkdiv(PIO pio, uint sm, float div) {
     return pio_sm_set_clkdiv(pio, sm, div);
 }
 
@@ -2335,7 +2335,7 @@ void nostatic_pio_sm_set_clkdiv(PIO pio, uint sm, float div) {
  * \param pio The PIO instance; either \ref pio0 or \ref pio1
  * \param sm State machine index (0..3)
  */
-void nostatic_pio_sm_clear_fifos(PIO pio, uint sm) {
+void __nostatic__pio_sm_clear_fifos(PIO pio, uint sm) {
     return pio_sm_clear_fifos(pio, sm);
 }
 
@@ -2351,7 +2351,7 @@ void nostatic_pio_sm_clear_fifos(PIO pio, uint sm) {
  * \param cycles the number of cycles 0-31 (or less if side set is being used)
  * \return the delay slot bits to be ORed with an instruction encoding
  */
-uint nostatic_pio_encode_delay(uint cycles) {
+uint __nostatic__pio_encode_delay(uint cycles) {
     return pio_encode_delay(cycles);
 }
 
@@ -2368,7 +2368,7 @@ uint nostatic_pio_encode_delay(uint cycles) {
  * \param value the value to sideset on the pins
  * \return the side set bits to be ORed with an instruction encoding
  */
-uint nostatic_pio_encode_sideset(uint sideset_bit_count, uint value) {
+uint __nostatic__pio_encode_sideset(uint sideset_bit_count, uint value) {
     return pio_encode_sideset(sideset_bit_count, value);
 }
 
@@ -2385,7 +2385,7 @@ uint nostatic_pio_encode_sideset(uint sideset_bit_count, uint value) {
  * \param value the value to sideset on the pins
  * \return the side set bits to be ORed with an instruction encoding
  */
-uint nostatic_pio_encode_sideset_opt(uint sideset_bit_count, uint value) {
+uint __nostatic__pio_encode_sideset_opt(uint sideset_bit_count, uint value) {
     return pio_encode_sideset_opt(sideset_bit_count, value);
 }
 
@@ -2399,7 +2399,7 @@ uint nostatic_pio_encode_sideset_opt(uint sideset_bit_count, uint value) {
  * \return The instruction encoding with 0 delay and no side set value
  * \see pio_encode_delay, pio_encode_sideset, pio_encode_sideset_opt
  */
-uint nostatic_pio_encode_jmp(uint addr) {
+uint __nostatic__pio_encode_jmp(uint addr) {
     return pio_encode_jmp(addr);
 }
 
@@ -2413,7 +2413,7 @@ uint nostatic_pio_encode_jmp(uint addr) {
  * \return The instruction encoding with 0 delay and no side set value
  * \see pio_encode_delay, pio_encode_sideset, pio_encode_sideset_opt
  */
-uint nostatic_pio_encode_jmp_not_x(uint addr) {
+uint __nostatic__pio_encode_jmp_not_x(uint addr) {
     return pio_encode_jmp_not_x(addr);
 }
 
@@ -2427,7 +2427,7 @@ uint nostatic_pio_encode_jmp_not_x(uint addr) {
  * \return The instruction encoding with 0 delay and no side set value
  * \see pio_encode_delay, pio_encode_sideset, pio_encode_sideset_opt
  */
-uint nostatic_pio_encode_jmp_x_dec(uint addr) {
+uint __nostatic__pio_encode_jmp_x_dec(uint addr) {
     return pio_encode_jmp_x_dec(addr);
 }
 
@@ -2441,7 +2441,7 @@ uint nostatic_pio_encode_jmp_x_dec(uint addr) {
  * \return The instruction encoding with 0 delay and no side set value
  * \see pio_encode_delay, pio_encode_sideset, pio_encode_sideset_opt
  */
-uint nostatic_pio_encode_jmp_not_y(uint addr) {
+uint __nostatic__pio_encode_jmp_not_y(uint addr) {
     return pio_encode_jmp_not_y(addr);
 }
 
@@ -2455,7 +2455,7 @@ uint nostatic_pio_encode_jmp_not_y(uint addr) {
  * \return The instruction encoding with 0 delay and no side set value
  * \see pio_encode_delay, pio_encode_sideset, pio_encode_sideset_opt
  */
-uint nostatic_pio_encode_jmp_y_dec(uint addr) {
+uint __nostatic__pio_encode_jmp_y_dec(uint addr) {
     return pio_encode_jmp_y_dec(addr);
 }
 
@@ -2469,7 +2469,7 @@ uint nostatic_pio_encode_jmp_y_dec(uint addr) {
  * \return The instruction encoding with 0 delay and no side set value
  * \see pio_encode_delay, pio_encode_sideset, pio_encode_sideset_opt
  */
-uint nostatic_pio_encode_jmp_x_ne_y(uint addr) {
+uint __nostatic__pio_encode_jmp_x_ne_y(uint addr) {
     return pio_encode_jmp_x_ne_y(addr);
 }
 
@@ -2483,7 +2483,7 @@ uint nostatic_pio_encode_jmp_x_ne_y(uint addr) {
  * \return The instruction encoding with 0 delay and no side set value
  * \see pio_encode_delay, pio_encode_sideset, pio_encode_sideset_opt
  */
-uint nostatic_pio_encode_jmp_pin(uint addr) {
+uint __nostatic__pio_encode_jmp_pin(uint addr) {
     return pio_encode_jmp_pin(addr);
 }
 
@@ -2497,7 +2497,7 @@ uint nostatic_pio_encode_jmp_pin(uint addr) {
  * \return The instruction encoding with 0 delay and no side set value
  * \see pio_encode_delay, pio_encode_sideset, pio_encode_sideset_opt
  */
-uint nostatic_pio_encode_jmp_not_osre(uint addr) {
+uint __nostatic__pio_encode_jmp_not_osre(uint addr) {
     return pio_encode_jmp_not_osre(addr);
 }
 
@@ -2512,7 +2512,7 @@ uint nostatic_pio_encode_jmp_not_osre(uint addr) {
  * \return The instruction encoding with 0 delay and no side set value
  * \see pio_encode_delay, pio_encode_sideset, pio_encode_sideset_opt
  */
-uint nostatic_pio_encode_wait_gpio(bool polarity, uint gpio) {
+uint __nostatic__pio_encode_wait_gpio(bool polarity, uint gpio) {
     return pio_encode_wait_gpio(polarity, gpio);
 }
 
@@ -2527,7 +2527,7 @@ uint nostatic_pio_encode_wait_gpio(bool polarity, uint gpio) {
  * \return The instruction encoding with 0 delay and no side set value
  * \see pio_encode_delay, pio_encode_sideset, pio_encode_sideset_opt
  */
-uint nostatic_pio_encode_wait_pin(bool polarity, uint pin) {
+uint __nostatic__pio_encode_wait_pin(bool polarity, uint pin) {
     return pio_encode_wait_pin(polarity, pin);
 }
 
@@ -2543,7 +2543,7 @@ uint nostatic_pio_encode_wait_pin(bool polarity, uint pin) {
  * \return The instruction encoding with 0 delay and no side set value
  * \see pio_encode_delay, pio_encode_sideset, pio_encode_sideset_opt
  */
-uint nostatic_pio_encode_wait_irq(bool polarity, bool relative, uint irq) {
+uint __nostatic__pio_encode_wait_irq(bool polarity, bool relative, uint irq) {
     return pio_encode_wait_irq(polarity, relative, irq);
 }
 
@@ -2558,7 +2558,7 @@ uint nostatic_pio_encode_wait_irq(bool polarity, bool relative, uint irq) {
  * \return The instruction encoding with 0 delay and no side set value
  * \see pio_encode_delay, pio_encode_sideset, pio_encode_sideset_opt
  */
-uint nostatic_pio_encode_in(enum pio_src_dest src, uint count) {
+uint __nostatic__pio_encode_in(enum pio_src_dest src, uint count) {
     return pio_encode_in(src, count);
 }
 
@@ -2573,7 +2573,7 @@ uint nostatic_pio_encode_in(enum pio_src_dest src, uint count) {
  * \return The instruction encoding with 0 delay and no side set value
  * \see pio_encode_delay, pio_encode_sideset, pio_encode_sideset_opt
  */
-uint nostatic_pio_encode_out(enum pio_src_dest dest, uint count) {
+uint __nostatic__pio_encode_out(enum pio_src_dest dest, uint count) {
     return pio_encode_out(dest, count);
 }
 
@@ -2588,7 +2588,7 @@ uint nostatic_pio_encode_out(enum pio_src_dest dest, uint count) {
  * \return The instruction encoding with 0 delay and no side set value
  * \see pio_encode_delay, pio_encode_sideset, pio_encode_sideset_opt
  */
-uint nostatic_pio_encode_push(bool if_full, bool block) {
+uint __nostatic__pio_encode_push(bool if_full, bool block) {
     return pio_encode_push(if_full, block);
 }
 
@@ -2603,7 +2603,7 @@ uint nostatic_pio_encode_push(bool if_full, bool block) {
  * \return The instruction encoding with 0 delay and no side set value
  * \see pio_encode_delay, pio_encode_sideset, pio_encode_sideset_opt
  */
-uint nostatic_pio_encode_pull(bool if_empty, bool block) {
+uint __nostatic__pio_encode_pull(bool if_empty, bool block) {
     return pio_encode_pull(if_empty, block);
 }
 
@@ -2618,7 +2618,7 @@ uint nostatic_pio_encode_pull(bool if_empty, bool block) {
  * \return The instruction encoding with 0 delay and no side set value
  * \see pio_encode_delay, pio_encode_sideset, pio_encode_sideset_opt
  */
-uint nostatic_pio_encode_mov(enum pio_src_dest dest, enum pio_src_dest src) {
+uint __nostatic__pio_encode_mov(enum pio_src_dest dest, enum pio_src_dest src) {
     return pio_encode_mov(dest, src);
 }
 
@@ -2633,7 +2633,7 @@ uint nostatic_pio_encode_mov(enum pio_src_dest dest, enum pio_src_dest src) {
  * \return The instruction encoding with 0 delay and no side set value
  * \see pio_encode_delay, pio_encode_sideset, pio_encode_sideset_opt
  */
-uint nostatic_pio_encode_mov_not(enum pio_src_dest dest, enum pio_src_dest src) {
+uint __nostatic__pio_encode_mov_not(enum pio_src_dest dest, enum pio_src_dest src) {
     return pio_encode_mov_not(dest, src);
 }
 
@@ -2648,7 +2648,7 @@ uint nostatic_pio_encode_mov_not(enum pio_src_dest dest, enum pio_src_dest src) 
  * \return The instruction encoding with 0 delay and no side set value
  * \see pio_encode_delay, pio_encode_sideset, pio_encode_sideset_opt
  */
-uint nostatic_pio_encode_mov_reverse(enum pio_src_dest dest, enum pio_src_dest src) {
+uint __nostatic__pio_encode_mov_reverse(enum pio_src_dest dest, enum pio_src_dest src) {
     return pio_encode_mov_reverse(dest, src);
 }
 
@@ -2663,7 +2663,7 @@ uint nostatic_pio_encode_mov_reverse(enum pio_src_dest dest, enum pio_src_dest s
  * \return The instruction encoding with 0 delay and no side set value
  * \see pio_encode_delay, pio_encode_sideset, pio_encode_sideset_opt
  */
-uint nostatic_pio_encode_irq_set(bool relative, uint irq) {
+uint __nostatic__pio_encode_irq_set(bool relative, uint irq) {
     return pio_encode_irq_set(relative, irq);
 }
 
@@ -2678,7 +2678,7 @@ uint nostatic_pio_encode_irq_set(bool relative, uint irq) {
  * \return The instruction encoding with 0 delay and no side set value
  * \see pio_encode_delay, pio_encode_sideset, pio_encode_sideset_opt
  */
-uint nostatic_pio_encode_irq_wait(bool relative, uint irq) {
+uint __nostatic__pio_encode_irq_wait(bool relative, uint irq) {
     return pio_encode_irq_wait(relative, irq);
 }
 
@@ -2693,7 +2693,7 @@ uint nostatic_pio_encode_irq_wait(bool relative, uint irq) {
  * \return The instruction encoding with 0 delay and no side set value
  * \see pio_encode_delay, pio_encode_sideset, pio_encode_sideset_opt
  */
-uint nostatic_pio_encode_irq_clear(bool relative, uint irq) {
+uint __nostatic__pio_encode_irq_clear(bool relative, uint irq) {
     return pio_encode_irq_clear(relative, irq);
 }
 
@@ -2708,7 +2708,7 @@ uint nostatic_pio_encode_irq_clear(bool relative, uint irq) {
  * \return The instruction encoding with 0 delay and no side set value
  * \see pio_encode_delay, pio_encode_sideset, pio_encode_sideset_opt
  */
-uint nostatic_pio_encode_set(enum pio_src_dest dest, uint value) {
+uint __nostatic__pio_encode_set(enum pio_src_dest dest, uint value) {
     return pio_encode_set(dest, value);
 }
 
@@ -2721,7 +2721,7 @@ uint nostatic_pio_encode_set(enum pio_src_dest dest, uint value) {
  * \return The instruction encoding with 0 delay and no side set value
  * \see pio_encode_delay, pio_encode_sideset, pio_encode_sideset_opt
  */
-uint nostatic_pio_encode_nop() {
+uint __nostatic__pio_encode_nop() {
     return pio_encode_nop();
 }
 
@@ -2734,7 +2734,7 @@ uint nostatic_pio_encode_nop() {
  * \param slice_num PWM block to enable/disable
  * \param enabled true to enable, false to disable
  */
-void nostatic_pwm_set_irq_enabled(uint slice_num, bool enabled) {
+void __nostatic__pwm_set_irq_enabled(uint slice_num, bool enabled) {
     return pwm_set_irq_enabled(slice_num, enabled);
 }
 
@@ -2747,7 +2747,7 @@ void nostatic_pwm_set_irq_enabled(uint slice_num, bool enabled) {
  * \param slice_mask Bitmask of all the blocks to enable/disable. Channel 0 = bit 0, channel 1 = bit 1 etc.
  * \param enabled true to enable, false to disable
  */
-void nostatic_pwm_set_irq_mask_enabled(uint32_t slice_mask, bool enabled) {
+void __nostatic__pwm_set_irq_mask_enabled(uint32_t slice_mask, bool enabled) {
     return pwm_set_irq_mask_enabled(slice_mask, enabled);
 }
 
@@ -2757,7 +2757,7 @@ void nostatic_pwm_set_irq_mask_enabled(uint32_t slice_mask, bool enabled) {
  *
  * \param slice_num PWM slice number
  */
-void nostatic_pwm_clear_irq(uint slice_num) {
+void __nostatic__pwm_clear_irq(uint slice_num) {
     return pwm_clear_irq(slice_num);
 }
 
@@ -2767,7 +2767,7 @@ void nostatic_pwm_clear_irq(uint slice_num) {
  *
  * \return Bitmask of all PWM interrupts currently set
  */
-uint32_t nostatic_pwm_get_irq_status_mask() {
+uint32_t __nostatic__pwm_get_irq_status_mask() {
     return pwm_get_irq_status_mask();
 }
 
@@ -2777,7 +2777,7 @@ uint32_t nostatic_pwm_get_irq_status_mask() {
  *
  * \param slice_num PWM slice number
  */
-void nostatic_pwm_force_irq(uint slice_num) {
+void __nostatic__pwm_force_irq(uint slice_num) {
     return pwm_force_irq(slice_num);
 }
 
@@ -2787,7 +2787,7 @@ void nostatic_pwm_force_irq(uint slice_num) {
  *
  * \param slice_num PWM slice number
  */
-uint nostatic_pwm_get_dreq(uint slice_num) {
+uint __nostatic__pwm_get_dreq(uint slice_num) {
     return pwm_get_dreq(slice_num);
 }
 
@@ -2799,7 +2799,7 @@ uint nostatic_pwm_get_dreq(uint slice_num) {
  * \param incr True to enable read address increments, if false, each read will be from the same address
  *             Usually disabled for peripheral to memory transfers
  */
-void nostatic_channel_config_set_read_increment(dma_channel_config * c, bool incr) {
+void __nostatic__channel_config_set_read_increment(dma_channel_config * c, bool incr) {
     return channel_config_set_read_increment(c, incr);
 }
 
@@ -2812,7 +2812,7 @@ void nostatic_channel_config_set_read_increment(dma_channel_config * c, bool inc
  *             Usually disabled for memory to peripheral transfers
  * Usually disabled for memory to peripheral transfers
  */
-void nostatic_channel_config_set_write_increment(dma_channel_config * c, bool incr) {
+void __nostatic__channel_config_set_write_increment(dma_channel_config * c, bool incr) {
     return channel_config_set_write_increment(c, incr);
 }
 
@@ -2832,7 +2832,7 @@ void nostatic_channel_config_set_write_increment(dma_channel_config * c, bool in
  * \param c Pointer to channel configuration data
  * \param dreq Source (see description)
  */
-void nostatic_channel_config_set_dreq(dma_channel_config * c, uint dreq) {
+void __nostatic__channel_config_set_dreq(dma_channel_config * c, uint dreq) {
     return channel_config_set_dreq(c, dreq);
 }
 
@@ -2846,7 +2846,7 @@ void nostatic_channel_config_set_dreq(dma_channel_config * c, uint dreq) {
  * \param c Pointer to channel configuration object
  * \param chain_to Channel to trigger when this channel completes.
  */
-void nostatic_channel_config_set_chain_to(dma_channel_config * c, uint chain_to) {
+void __nostatic__channel_config_set_chain_to(dma_channel_config * c, uint chain_to) {
     return channel_config_set_chain_to(c, chain_to);
 }
 
@@ -2860,7 +2860,7 @@ void nostatic_channel_config_set_chain_to(dma_channel_config * c, uint chain_to)
  * \param c Pointer to channel configuration object
  * \param size See enum for possible values.
  */
-void nostatic_channel_config_set_transfer_data_size(dma_channel_config * c, enum dma_channel_transfer_size size) {
+void __nostatic__channel_config_set_transfer_data_size(dma_channel_config * c, enum dma_channel_transfer_size size) {
     return channel_config_set_transfer_data_size(c, size);
 }
 
@@ -2880,7 +2880,7 @@ void nostatic_channel_config_set_transfer_data_size(dma_channel_config * c, enum
  * \param size_bits 0 to disable wrapping. Otherwise the size in bits of the changing part of the address.
  *        Effectively wraps the address on a (1 << size_bits) byte boundary.
  */
-void nostatic_channel_config_set_ring(dma_channel_config * c, bool write, uint size_bits) {
+void __nostatic__channel_config_set_ring(dma_channel_config * c, bool write, uint size_bits) {
     return channel_config_set_ring(c, write, size_bits);
 }
 
@@ -2894,7 +2894,7 @@ void nostatic_channel_config_set_ring(dma_channel_config * c, bool write, uint s
  * \param c Pointer to channel configuration object
  * \param bswap True to enable byte swapping
  */
-void nostatic_channel_config_set_bswap(dma_channel_config * c, bool bswap) {
+void __nostatic__channel_config_set_bswap(dma_channel_config * c, bool bswap) {
     return channel_config_set_bswap(c, bswap);
 }
 
@@ -2909,7 +2909,7 @@ void nostatic_channel_config_set_bswap(dma_channel_config * c, bool bswap) {
  * \param c Pointer to channel configuration object
  * \param irq_quiet True to enable quiet mode, false to disable.
  */
-void nostatic_channel_config_set_irq_quiet(dma_channel_config * c, bool irq_quiet) {
+void __nostatic__channel_config_set_irq_quiet(dma_channel_config * c, bool irq_quiet) {
     return channel_config_set_irq_quiet(c, irq_quiet);
 }
 
@@ -2928,7 +2928,7 @@ void nostatic_channel_config_set_irq_quiet(dma_channel_config * c, bool irq_quie
  * \param c Pointer to channel configuration object
  * \param high_priority True to enable high priority
  */
-void nostatic_channel_config_set_high_priority(dma_channel_config * c, bool high_priority) {
+void __nostatic__channel_config_set_high_priority(dma_channel_config * c, bool high_priority) {
     return channel_config_set_high_priority(c, high_priority);
 }
 
@@ -2944,7 +2944,7 @@ void nostatic_channel_config_set_high_priority(dma_channel_config * c, bool high
  * \param enable True to enable the DMA channel. When enabled, the channel will respond to triggering events, and start transferring data.
  *
  */
-void nostatic_channel_config_set_enable(dma_channel_config * c, bool enable) {
+void __nostatic__channel_config_set_enable(dma_channel_config * c, bool enable) {
     return channel_config_set_enable(c, enable);
 }
 
@@ -2957,7 +2957,7 @@ void nostatic_channel_config_set_enable(dma_channel_config * c, bool enable) {
  * \param c Pointer to channel configuration object
  * \param sniff_enable True to enable the Sniff HW access to this DMA channel.
  */
-void nostatic_channel_config_set_sniff_enable(dma_channel_config * c, bool sniff_enable) {
+void __nostatic__channel_config_set_sniff_enable(dma_channel_config * c, bool sniff_enable) {
     return channel_config_set_sniff_enable(c, sniff_enable);
 }
 
@@ -2982,7 +2982,7 @@ void nostatic_channel_config_set_sniff_enable(dma_channel_config * c, bool sniff
  * \param channel DMA channel
  * \return the default configuration which can then be modified.
  */
-dma_channel_config nostatic_dma_channel_get_default_config(uint channel) {
+dma_channel_config __nostatic__dma_channel_get_default_config(uint channel) {
     return dma_channel_get_default_config(channel);
 }
 
@@ -2993,7 +2993,7 @@ dma_channel_config nostatic_dma_channel_get_default_config(uint channel) {
  * \param channel DMA channel
  * \return The current configuration as read from the HW register (not cached)
  */
-dma_channel_config nostatic_dma_get_channel_config(uint channel) {
+dma_channel_config __nostatic__dma_get_channel_config(uint channel) {
     return dma_get_channel_config(channel);
 }
 
@@ -3004,7 +3004,7 @@ dma_channel_config nostatic_dma_get_channel_config(uint channel) {
  * \param config Pointer to a config structure.
  * \return Register content
  */
-uint32_t nostatic_channel_config_get_ctrl_value(const dma_channel_config * config) {
+uint32_t __nostatic__channel_config_get_ctrl_value(const dma_channel_config * config) {
     return channel_config_get_ctrl_value(config);
 }
 
@@ -3016,7 +3016,7 @@ uint32_t nostatic_channel_config_get_ctrl_value(const dma_channel_config * confi
  * \param config Pointer to a config structure with required configuration
  * \param trigger True to trigger the transfer immediately
  */
-void nostatic_dma_channel_set_config(uint channel, const dma_channel_config * config, bool trigger) {
+void __nostatic__dma_channel_set_config(uint channel, const dma_channel_config * config, bool trigger) {
     return dma_channel_set_config(channel, config, trigger);
 }
 
@@ -3028,7 +3028,7 @@ void nostatic_dma_channel_set_config(uint channel, const dma_channel_config * co
  * \param read_addr Initial read address of transfer.
  * \param trigger True to start the transfer immediately
  */
-void nostatic_dma_channel_set_read_addr(uint channel, const volatile void * read_addr, bool trigger) {
+void __nostatic__dma_channel_set_read_addr(uint channel, const volatile void * read_addr, bool trigger) {
     return dma_channel_set_read_addr(channel, read_addr, trigger);
 }
 
@@ -3040,7 +3040,7 @@ void nostatic_dma_channel_set_read_addr(uint channel, const volatile void * read
  * \param write_addr Initial write address of transfer.
  * \param trigger True to start the transfer immediately
  */
-void nostatic_dma_channel_set_write_addr(uint channel, volatile void * write_addr, bool trigger) {
+void __nostatic__dma_channel_set_write_addr(uint channel, volatile void * write_addr, bool trigger) {
     return dma_channel_set_write_addr(channel, write_addr, trigger);
 }
 
@@ -3052,7 +3052,7 @@ void nostatic_dma_channel_set_write_addr(uint channel, volatile void * write_add
  * \param trans_count The number of transfers (not NOT bytes, see channel_config_set_transfer_data_size)
  * \param trigger True to start the transfer immediately
  */
-void nostatic_dma_channel_set_trans_count(uint channel, uint32_t trans_count, bool trigger) {
+void __nostatic__dma_channel_set_trans_count(uint channel, uint32_t trans_count, bool trigger) {
     return dma_channel_set_trans_count(channel, trans_count, trigger);
 }
 
@@ -3067,7 +3067,7 @@ void nostatic_dma_channel_set_trans_count(uint channel, uint32_t trans_count, bo
  * \param transfer_count Number of transfers to perform
  * \param trigger True to start the transfer immediately
  */
-void nostatic_dma_channel_configure(uint channel, const dma_channel_config * config, volatile void * write_addr, const volatile void * read_addr, uint transfer_count, bool trigger) {
+void __nostatic__dma_channel_configure(uint channel, const dma_channel_config * config, volatile void * write_addr, const volatile void * read_addr, uint transfer_count, bool trigger) {
     return dma_channel_configure(channel, config, write_addr, read_addr, transfer_count, trigger);
 }
 
@@ -3077,7 +3077,7 @@ void nostatic_dma_channel_configure(uint channel, const dma_channel_config * con
  *
  * \param chan_mask Bitmask of all the channels requiring starting. Channel 0 = bit 0, channel 1 = bit 1 etc.
  */
-void nostatic_dma_start_channel_mask(uint32_t chan_mask) {
+void __nostatic__dma_start_channel_mask(uint32_t chan_mask) {
     return dma_start_channel_mask(chan_mask);
 }
 
@@ -3087,7 +3087,7 @@ void nostatic_dma_start_channel_mask(uint32_t chan_mask) {
  *
  * \param channel DMA channel
  */
-void nostatic_dma_channel_start(uint channel) {
+void __nostatic__dma_channel_start(uint channel) {
     return dma_channel_start(channel);
 }
 
@@ -3125,7 +3125,7 @@ void nostatic_dma_channel_start(uint channel) {
  *
  * \param channel DMA channel
  */
-void nostatic_dma_channel_abort(uint channel) {
+void __nostatic__dma_channel_abort(uint channel) {
     return dma_channel_abort(channel);
 }
 
@@ -3136,7 +3136,7 @@ void nostatic_dma_channel_abort(uint channel) {
  * \param channel DMA channel
  * \param enabled true to enable interrupt 0 on specified channel, false to disable.
  */
-void nostatic_dma_channel_set_irq0_enabled(uint channel, bool enabled) {
+void __nostatic__dma_channel_set_irq0_enabled(uint channel, bool enabled) {
     return dma_channel_set_irq0_enabled(channel, enabled);
 }
 
@@ -3147,7 +3147,7 @@ void nostatic_dma_channel_set_irq0_enabled(uint channel, bool enabled) {
  * \param channel_mask Bitmask of all the channels to enable/disable. Channel 0 = bit 0, channel 1 = bit 1 etc.
  * \param enabled true to enable all the interrupts specified in the mask, false to disable all the interrupts specified in the mask.
  */
-void nostatic_dma_set_irq0_channel_mask_enabled(uint32_t channel_mask, bool enabled) {
+void __nostatic__dma_set_irq0_channel_mask_enabled(uint32_t channel_mask, bool enabled) {
     return dma_set_irq0_channel_mask_enabled(channel_mask, enabled);
 }
 
@@ -3158,7 +3158,7 @@ void nostatic_dma_set_irq0_channel_mask_enabled(uint32_t channel_mask, bool enab
  * \param channel DMA channel
  * \param enabled true to enable interrupt 1 on specified channel, false to disable.
  */
-void nostatic_dma_channel_set_irq1_enabled(uint channel, bool enabled) {
+void __nostatic__dma_channel_set_irq1_enabled(uint channel, bool enabled) {
     return dma_channel_set_irq1_enabled(channel, enabled);
 }
 
@@ -3169,7 +3169,7 @@ void nostatic_dma_channel_set_irq1_enabled(uint channel, bool enabled) {
  * \param channel_mask Bitmask of all the channels to enable/disable. Channel 0 = bit 0, channel 1 = bit 1 etc.
  * \param enabled true to enable all the interrupts specified in the mask, false to disable all the interrupts specified in the mask.
  */
-void nostatic_dma_set_irq1_channel_mask_enabled(uint32_t channel_mask, bool enabled) {
+void __nostatic__dma_set_irq1_channel_mask_enabled(uint32_t channel_mask, bool enabled) {
     return dma_set_irq1_channel_mask_enabled(channel_mask, enabled);
 }
 
@@ -3181,7 +3181,7 @@ void nostatic_dma_set_irq1_channel_mask_enabled(uint32_t channel_mask, bool enab
  * \param channel DMA channel
  * \param enabled true to enable interrupt via irq_index for specified channel, false to disable.
  */
-void nostatic_dma_irqn_set_channel_enabled(uint irq_index, uint channel, bool enabled) {
+void __nostatic__dma_irqn_set_channel_enabled(uint irq_index, uint channel, bool enabled) {
     return dma_irqn_set_channel_enabled(irq_index, channel, enabled);
 }
 
@@ -3193,7 +3193,7 @@ void nostatic_dma_irqn_set_channel_enabled(uint irq_index, uint channel, bool en
  * \param channel_mask Bitmask of all the channels to enable/disable. Channel 0 = bit 0, channel 1 = bit 1 etc.
  * \param enabled true to enable all the interrupts specified in the mask, false to disable all the interrupts specified in the mask.
  */
-void nostatic_dma_irqn_set_channel_mask_enabled(uint irq_index, uint32_t channel_mask, bool enabled) {
+void __nostatic__dma_irqn_set_channel_mask_enabled(uint irq_index, uint32_t channel_mask, bool enabled) {
     return dma_irqn_set_channel_mask_enabled(irq_index, channel_mask, enabled);
 }
 
@@ -3204,7 +3204,7 @@ void nostatic_dma_irqn_set_channel_mask_enabled(uint irq_index, uint32_t channel
  * \param channel DMA channel
  * \return true if the channel is a cause of DMA_IRQ_0, false otherwise
  */
-bool nostatic_dma_channel_get_irq0_status(uint channel) {
+bool __nostatic__dma_channel_get_irq0_status(uint channel) {
     return dma_channel_get_irq0_status(channel);
 }
 
@@ -3215,7 +3215,7 @@ bool nostatic_dma_channel_get_irq0_status(uint channel) {
  * \param channel DMA channel
  * \return true if the channel is a cause of DMA_IRQ_1, false otherwise
  */
-bool nostatic_dma_channel_get_irq1_status(uint channel) {
+bool __nostatic__dma_channel_get_irq1_status(uint channel) {
     return dma_channel_get_irq1_status(channel);
 }
 
@@ -3227,7 +3227,7 @@ bool nostatic_dma_channel_get_irq1_status(uint channel) {
  * \param channel DMA channel
  * \return true if the channel is a cause of the DMA_IRQ_N, false otherwise
  */
-bool nostatic_dma_irqn_get_channel_status(uint irq_index, uint channel) {
+bool __nostatic__dma_irqn_get_channel_status(uint irq_index, uint channel) {
     return dma_irqn_get_channel_status(irq_index, channel);
 }
 
@@ -3237,7 +3237,7 @@ bool nostatic_dma_irqn_get_channel_status(uint irq_index, uint channel) {
  *
  * \param channel DMA channel
  */
-void nostatic_dma_channel_acknowledge_irq0(uint channel) {
+void __nostatic__dma_channel_acknowledge_irq0(uint channel) {
     return dma_channel_acknowledge_irq0(channel);
 }
 
@@ -3247,7 +3247,7 @@ void nostatic_dma_channel_acknowledge_irq0(uint channel) {
  *
  * \param channel DMA channel
  */
-void nostatic_dma_channel_acknowledge_irq1(uint channel) {
+void __nostatic__dma_channel_acknowledge_irq1(uint channel) {
     return dma_channel_acknowledge_irq1(channel);
 }
 
@@ -3258,7 +3258,7 @@ void nostatic_dma_channel_acknowledge_irq1(uint channel) {
  * \param irq_index the IRQ index; either 0 or 1 for DMA_IRQ_0 or DMA_IRQ_1
  * \param channel DMA channel
  */
-void nostatic_dma_irqn_acknowledge_channel(uint irq_index, uint channel) {
+void __nostatic__dma_irqn_acknowledge_channel(uint irq_index, uint channel) {
     return dma_irqn_acknowledge_channel(irq_index, channel);
 }
 
@@ -3273,7 +3273,7 @@ void nostatic_dma_irqn_acknowledge_channel(uint irq_index, uint channel) {
  * \param numerator the fraction's numerator
  * \param denominator the fraction's denominator
  */
-void nostatic_dma_timer_set_fraction(uint timer, uint16_t numerator, uint16_t denominator) {
+void __nostatic__dma_timer_set_fraction(uint timer, uint16_t numerator, uint16_t denominator) {
     return dma_timer_set_fraction(timer, numerator, denominator);
 }
 
@@ -3283,7 +3283,7 @@ void nostatic_dma_timer_set_fraction(uint timer, uint16_t numerator, uint16_t de
  *
  * \param timer_num DMA timer number 0-3
  */
-uint nostatic_dma_get_timer_dreq(uint timer_num) {
+uint __nostatic__dma_get_timer_dreq(uint timer_num) {
     return dma_get_timer_dreq(timer_num);
 }
 
@@ -3293,7 +3293,7 @@ uint nostatic_dma_get_timer_dreq(uint timer_num) {
  *
  * \param bits Bit pattern indicating blocks to reset. See \ref reset_bitmask
  */
-void nostatic_reset_block(uint32_t bits) {
+void __nostatic__reset_block(uint32_t bits) {
     return reset_block(bits);
 }
 
@@ -3303,7 +3303,7 @@ void nostatic_reset_block(uint32_t bits) {
  *
  * \param bits Bit pattern indicating blocks to unreset. See \ref reset_bitmask
  */
-void nostatic_unreset_block(uint32_t bits) {
+void __nostatic__unreset_block(uint32_t bits) {
     return unreset_block(bits);
 }
 
@@ -3313,7 +3313,7 @@ void nostatic_unreset_block(uint32_t bits) {
  *
  * \param bits Bit pattern indicating blocks to unreset. See \ref reset_bitmask
  */
-void nostatic_unreset_block_wait(uint32_t bits) {
+void __nostatic__unreset_block_wait(uint32_t bits) {
     return unreset_block_wait(bits);
 }
 
@@ -3325,7 +3325,7 @@ void nostatic_unreset_block_wait(uint32_t bits) {
  *
  * \param gpio The GPIO number to use. Allowable GPIO numbers are 26 to 29 inclusive.
  */
-void nostatic_adc_gpio_init(uint gpio) {
+void __nostatic__adc_gpio_init(uint gpio) {
     return adc_gpio_init(gpio);
 }
 
@@ -3338,7 +3338,7 @@ void nostatic_adc_gpio_init(uint gpio) {
  *
  * \param input Input to select.
  */
-void nostatic_adc_select_input(uint input) {
+void __nostatic__adc_select_input(uint input) {
     return adc_select_input(input);
 }
 
@@ -3348,7 +3348,7 @@ void nostatic_adc_select_input(uint input) {
  *
  * \return The currently selected input channel. 0...3 are GPIOs 26...29 respectively. Input 4 is the onboard temperature sensor.
  */
-uint nostatic_adc_get_selected_input() {
+uint __nostatic__adc_get_selected_input() {
     return adc_get_selected_input();
 }
 
@@ -3361,7 +3361,7 @@ uint nostatic_adc_get_selected_input() {
  *
  * \param input_mask A bit pattern indicating which of the 5 inputs are to be sampled. Write a value of 0 to disable round robin sampling.
  */
-void nostatic_adc_set_round_robin(uint input_mask) {
+void __nostatic__adc_set_round_robin(uint input_mask) {
     return adc_set_round_robin(input_mask);
 }
 
@@ -3372,7 +3372,7 @@ void nostatic_adc_set_round_robin(uint input_mask) {
  * \param enable Set true to power on the onboard temperature sensor, false to power off.
  *
  */
-void nostatic_adc_set_temp_sensor_enabled(bool enable) {
+void __nostatic__adc_set_temp_sensor_enabled(bool enable) {
     return adc_set_temp_sensor_enabled(enable);
 }
 
@@ -3384,7 +3384,7 @@ void nostatic_adc_set_temp_sensor_enabled(bool enable) {
  *
  * \return Result of the conversion.
  */
-uint16_t nostatic_adc_read() {
+uint16_t __nostatic__adc_read() {
     return adc_read();
 }
 
@@ -3394,7 +3394,7 @@ uint16_t nostatic_adc_read() {
  *
  * \param run false to disable, true to enable free running conversion mode.
  */
-void nostatic_adc_run(bool run) {
+void __nostatic__adc_run(bool run) {
     return adc_run(run);
 }
 
@@ -3407,7 +3407,7 @@ void nostatic_adc_run(bool run) {
  *
  * \param clkdiv If non-zero, conversion will be started at intervals rather than back to back.
  */
-void nostatic_adc_set_clkdiv(float clkdiv) {
+void __nostatic__adc_set_clkdiv(float clkdiv) {
     return adc_set_clkdiv(clkdiv);
 }
 
@@ -3423,7 +3423,7 @@ void nostatic_adc_set_clkdiv(float clkdiv) {
  * \param err_in_fifo If enabled, bit 15 of the FIFO contains error flag for each sample
  * \param byte_shift Shift FIFO contents to be one byte in size (for byte DMA) - enables DMA to byte buffers.
  */
-void nostatic_adc_fifo_setup(bool en, bool dreq_en, uint16_t dreq_thresh, bool err_in_fifo, bool byte_shift) {
+void __nostatic__adc_fifo_setup(bool en, bool dreq_en, uint16_t dreq_thresh, bool err_in_fifo, bool byte_shift) {
     return adc_fifo_setup(en, dreq_en, dreq_thresh, err_in_fifo, byte_shift);
 }
 
@@ -3433,7 +3433,7 @@ void nostatic_adc_fifo_setup(bool en, bool dreq_en, uint16_t dreq_thresh, bool e
  *
  * \return Returns true if the FIFO is empty
  */
-bool nostatic_adc_fifo_is_empty() {
+bool __nostatic__adc_fifo_is_empty() {
     return adc_fifo_is_empty();
 }
 
@@ -3443,7 +3443,7 @@ bool nostatic_adc_fifo_is_empty() {
  *
  * The ADC FIFO is 4 entries long. This function will return how many samples are currently present.
  */
-uint8_t nostatic_adc_fifo_get_level() {
+uint8_t __nostatic__adc_fifo_get_level() {
     return adc_fifo_get_level();
 }
 
@@ -3453,7 +3453,7 @@ uint8_t nostatic_adc_fifo_get_level() {
  *
  * Pops the latest result from the ADC FIFO.
  */
-uint16_t nostatic_adc_fifo_get() {
+uint16_t __nostatic__adc_fifo_get() {
     return adc_fifo_get();
 }
 
@@ -3463,7 +3463,7 @@ uint16_t nostatic_adc_fifo_get() {
  *
  * Blocks until data is present in the FIFO
  */
-uint16_t nostatic_adc_fifo_get_blocking() {
+uint16_t __nostatic__adc_fifo_get_blocking() {
     return adc_fifo_get_blocking();
 }
 
@@ -3473,7 +3473,7 @@ uint16_t nostatic_adc_fifo_get_blocking() {
  *
  * Will wait for any conversion to complete then drain the FIFO, discarding any results.
  */
-void nostatic_adc_fifo_drain() {
+void __nostatic__adc_fifo_drain() {
     return adc_fifo_drain();
 }
 
@@ -3483,7 +3483,7 @@ void nostatic_adc_fifo_drain() {
  *
  * \param enabled Set to true to enable the ADC interrupts, false to disable
  */
-void nostatic_adc_irq_set_enabled(bool enabled) {
+void __nostatic__adc_irq_set_enabled(bool enabled) {
     return adc_irq_set_enabled(enabled);
 }
 
@@ -3494,7 +3494,7 @@ void nostatic_adc_irq_set_enabled(bool enabled) {
  * \param spi SPI instance
  * \return Number of SPI, 0 or 1.
  */
-uint nostatic_spi_get_index(const spi_inst_t * spi) {
+uint __nostatic__spi_get_index(const spi_inst_t * spi) {
     return spi_get_index(spi);
 }
 
@@ -3510,7 +3510,7 @@ uint nostatic_spi_get_index(const spi_inst_t * spi) {
  * \param cpha SSPCLKOUT phase, applicable to Motorola SPI frame format only
  * \param order Must be SPI_MSB_FIRST, no other values supported on the PL022
  */
-void nostatic_spi_set_format(spi_inst_t * spi, uint data_bits, spi_cpol_t cpol, spi_cpha_t cpha, __unused spi_order_t order) {
+void __nostatic__spi_set_format(spi_inst_t * spi, uint data_bits, spi_cpol_t cpol, spi_cpha_t cpha, __unused spi_order_t order) {
     return spi_set_format(spi, data_bits, cpol, cpha, order);
 }
 
@@ -3524,7 +3524,7 @@ void nostatic_spi_set_format(spi_inst_t * spi, uint data_bits, spi_cpol_t cpol, 
  * \param spi SPI instance specifier, either \ref spi0 or \ref spi1
  * \param slave true to set SPI device as a slave device, false for master.
  */
-void nostatic_spi_set_slave(spi_inst_t * spi, bool slave) {
+void __nostatic__spi_set_slave(spi_inst_t * spi, bool slave) {
     return spi_set_slave(spi, slave);
 }
 
@@ -3535,7 +3535,7 @@ void nostatic_spi_set_slave(spi_inst_t * spi, bool slave) {
  * \param spi SPI instance specifier, either \ref spi0 or \ref spi1
  * \return false if no space is available to write. True if a write is possible
  */
-bool nostatic_spi_is_writable(const spi_inst_t * spi) {
+bool __nostatic__spi_is_writable(const spi_inst_t * spi) {
     return spi_is_writable(spi);
 }
 
@@ -3546,7 +3546,7 @@ bool nostatic_spi_is_writable(const spi_inst_t * spi) {
  * \param spi SPI instance specifier, either \ref spi0 or \ref spi1
  * \return true if a read is possible i.e. data is present
  */
-bool nostatic_spi_is_readable(const spi_inst_t * spi) {
+bool __nostatic__spi_is_readable(const spi_inst_t * spi) {
     return spi_is_readable(spi);
 }
 
@@ -3557,7 +3557,7 @@ bool nostatic_spi_is_readable(const spi_inst_t * spi) {
  * \param spi SPI instance specifier, either \ref spi0 or \ref spi1
  * \return true if SPI is busy
  */
-bool nostatic_spi_is_busy(const spi_inst_t * spi) {
+bool __nostatic__spi_is_busy(const spi_inst_t * spi) {
     return spi_is_busy(spi);
 }
 
@@ -3568,7 +3568,7 @@ bool nostatic_spi_is_busy(const spi_inst_t * spi) {
  * \param spi SPI instance specifier, either \ref spi0 or \ref spi1
  * \param is_tx true for sending data to the SPI instance, false for receiving data from the SPI instance
  */
-uint nostatic_spi_get_dreq(spi_inst_t * spi, bool is_tx) {
+uint __nostatic__spi_get_dreq(spi_inst_t * spi, bool is_tx) {
     return spi_get_dreq(spi, is_tx);
 }
 
@@ -3582,7 +3582,7 @@ uint nostatic_spi_get_dreq(spi_inst_t * spi, bool is_tx) {
  * \param a The dividend
  * \param b The divisor
  */
-void nostatic_hw_divider_divmod_s32_start(int32_t a, int32_t b) {
+void __nostatic__hw_divider_divmod_s32_start(int32_t a, int32_t b) {
     return hw_divider_divmod_s32_start(a, b);
 }
 
@@ -3596,7 +3596,7 @@ void nostatic_hw_divider_divmod_s32_start(int32_t a, int32_t b) {
  * \param a The dividend
  * \param b The divisor
  */
-void nostatic_hw_divider_divmod_u32_start(uint32_t a, uint32_t b) {
+void __nostatic__hw_divider_divmod_u32_start(uint32_t a, uint32_t b) {
     return hw_divider_divmod_u32_start(a, b);
 }
 
@@ -3606,7 +3606,7 @@ void nostatic_hw_divider_divmod_u32_start(uint32_t a, uint32_t b) {
  *
  * Wait for a divide to complete
  */
-void nostatic_hw_divider_wait_ready() {
+void __nostatic__hw_divider_wait_ready() {
     return hw_divider_wait_ready();
 }
 
@@ -3618,7 +3618,7 @@ void nostatic_hw_divider_wait_ready() {
  *
  * \return Current result. Most significant 32 bits are the remainder, lower 32 bits are the quotient.
  */
-divmod_result_t nostatic_hw_divider_result_nowait() {
+divmod_result_t __nostatic__hw_divider_result_nowait() {
     return hw_divider_result_nowait();
 }
 
@@ -3630,7 +3630,7 @@ divmod_result_t nostatic_hw_divider_result_nowait() {
  *
  * \return Current result. Most significant 32 bits are the remainder, lower 32 bits are the quotient.
  */
-divmod_result_t nostatic_hw_divider_result_wait() {
+divmod_result_t __nostatic__hw_divider_result_wait() {
     return hw_divider_result_wait();
 }
 
@@ -3642,7 +3642,7 @@ divmod_result_t nostatic_hw_divider_result_wait() {
  *
  * \return Current unsigned quotient result.
  */
-uint32_t nostatic_hw_divider_u32_quotient_wait() {
+uint32_t __nostatic__hw_divider_u32_quotient_wait() {
     return hw_divider_u32_quotient_wait();
 }
 
@@ -3654,7 +3654,7 @@ uint32_t nostatic_hw_divider_u32_quotient_wait() {
  *
  * \return Current signed quotient result.
  */
-int32_t nostatic_hw_divider_s32_quotient_wait() {
+int32_t __nostatic__hw_divider_s32_quotient_wait() {
     return hw_divider_s32_quotient_wait();
 }
 
@@ -3666,7 +3666,7 @@ int32_t nostatic_hw_divider_s32_quotient_wait() {
  *
  * \return Current unsigned remainder result.
  */
-uint32_t nostatic_hw_divider_u32_remainder_wait() {
+uint32_t __nostatic__hw_divider_u32_remainder_wait() {
     return hw_divider_u32_remainder_wait();
 }
 
@@ -3678,7 +3678,7 @@ uint32_t nostatic_hw_divider_u32_remainder_wait() {
  *
  * \return Current remainder results.
  */
-int32_t nostatic_hw_divider_s32_remainder_wait() {
+int32_t __nostatic__hw_divider_s32_remainder_wait() {
     return hw_divider_s32_remainder_wait();
 }
 
@@ -3692,7 +3692,7 @@ int32_t nostatic_hw_divider_s32_remainder_wait() {
  * \param b The divisor
  * \return Quotient results of the divide
  */
-uint32_t nostatic_hw_divider_u32_quotient(uint32_t a, uint32_t b) {
+uint32_t __nostatic__hw_divider_u32_quotient(uint32_t a, uint32_t b) {
     return hw_divider_u32_quotient(a, b);
 }
 
@@ -3706,7 +3706,7 @@ uint32_t nostatic_hw_divider_u32_quotient(uint32_t a, uint32_t b) {
  * \param b The divisor
  * \return Remainder results of the divide
  */
-uint32_t nostatic_hw_divider_u32_remainder(uint32_t a, uint32_t b) {
+uint32_t __nostatic__hw_divider_u32_remainder(uint32_t a, uint32_t b) {
     return hw_divider_u32_remainder(a, b);
 }
 
@@ -3720,7 +3720,7 @@ uint32_t nostatic_hw_divider_u32_remainder(uint32_t a, uint32_t b) {
  * \param b The divisor
  * \return Quotient results of the divide
  */
-int32_t nostatic_hw_divider_quotient_s32(int32_t a, int32_t b) {
+int32_t __nostatic__hw_divider_quotient_s32(int32_t a, int32_t b) {
     return hw_divider_quotient_s32(a, b);
 }
 
@@ -3734,7 +3734,7 @@ int32_t nostatic_hw_divider_quotient_s32(int32_t a, int32_t b) {
  * \param b The divisor
  * \return Remainder results of the divide
  */
-int32_t nostatic_hw_divider_remainder_s32(int32_t a, int32_t b) {
+int32_t __nostatic__hw_divider_remainder_s32(int32_t a, int32_t b) {
     return hw_divider_remainder_s32(a, b);
 }
 
@@ -3742,7 +3742,7 @@ int32_t nostatic_hw_divider_remainder_s32(int32_t a, int32_t b) {
 /*! \brief Pause for exact amount of time needed for a asynchronous divide to complete
  *  \ingroup hardware_divider
  */
-void nostatic_hw_divider_pause() {
+void __nostatic__hw_divider_pause() {
     return hw_divider_pause();
 }
 
@@ -3756,7 +3756,7 @@ void nostatic_hw_divider_pause() {
  * \param b The divisor
  * \return Quotient result of the divide
  */
-uint32_t nostatic_hw_divider_u32_quotient_inlined(uint32_t a, uint32_t b) {
+uint32_t __nostatic__hw_divider_u32_quotient_inlined(uint32_t a, uint32_t b) {
     return hw_divider_u32_quotient_inlined(a, b);
 }
 
@@ -3770,7 +3770,7 @@ uint32_t nostatic_hw_divider_u32_quotient_inlined(uint32_t a, uint32_t b) {
  * \param b The divisor
  * \return Remainder result of the divide
  */
-uint32_t nostatic_hw_divider_u32_remainder_inlined(uint32_t a, uint32_t b) {
+uint32_t __nostatic__hw_divider_u32_remainder_inlined(uint32_t a, uint32_t b) {
     return hw_divider_u32_remainder_inlined(a, b);
 }
 
@@ -3784,7 +3784,7 @@ uint32_t nostatic_hw_divider_u32_remainder_inlined(uint32_t a, uint32_t b) {
  * \param b The divisor
  * \return Quotient result of the divide
  */
-int32_t nostatic_hw_divider_s32_quotient_inlined(int32_t a, int32_t b) {
+int32_t __nostatic__hw_divider_s32_quotient_inlined(int32_t a, int32_t b) {
     return hw_divider_s32_quotient_inlined(a, b);
 }
 
@@ -3798,7 +3798,7 @@ int32_t nostatic_hw_divider_s32_quotient_inlined(int32_t a, int32_t b) {
  * \param b The divisor
  * \return Remainder result of the divide
  */
-int32_t nostatic_hw_divider_s32_remainder_inlined(int32_t a, int32_t b) {
+int32_t __nostatic__hw_divider_s32_remainder_inlined(int32_t a, int32_t b) {
     return hw_divider_s32_remainder_inlined(a, b);
 }
 
@@ -3806,7 +3806,7 @@ int32_t nostatic_hw_divider_s32_remainder_inlined(int32_t a, int32_t b) {
 /*! \brief Execute a breakpoint instruction
  *  \ingroup pico_platform
  */
-void nostatic___breakpoint() {
+void __nostatic____breakpoint() {
     return __breakpoint();
 }
 
@@ -3815,7 +3815,7 @@ void nostatic___breakpoint() {
  *  \ingroup pico_platform
  * @return the RP2040 rom version number (1 for RP2040-B0, 2 for RP2040-B1, 3 for RP2040-B2)
  */
-uint8_t nostatic_rp2040_rom_version() {
+uint8_t __nostatic__rp2040_rom_version() {
     return rp2040_rom_version();
 }
 
@@ -3834,7 +3834,7 @@ uint8_t nostatic_rp2040_rom_version() {
  *
  * \param minimum_cycles the minimum number of system clock cycles to delay for
  */
-void nostatic_busy_wait_at_least_cycles(uint32_t minimum_cycles) {
+void __nostatic__busy_wait_at_least_cycles(uint32_t minimum_cycles) {
     return busy_wait_at_least_cycles(minimum_cycles);
 }
 
