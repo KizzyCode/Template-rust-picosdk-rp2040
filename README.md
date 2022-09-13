@@ -9,5 +9,5 @@ FIXME
 ## Files
 - `/`
   - `c`: The C sources including the `main` function etc.
-  - `rust`: The Rust librart that implements the core functionality
-  - `sdk`: The Raspberry Pi Pico SDK (see https://github.com/raspberrypi/pico-sdk)
+  - `rust`: The Rust library that implements the core functionality
+  - `pico-sdk`: The Raspberry Pi Pico SDK as git submodule (see https://github.com/raspberrypi/pico-sdk)
